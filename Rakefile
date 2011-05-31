@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-BackgroundServer::Application.load_tasks
+SnapshotServer::Application.load_tasks
