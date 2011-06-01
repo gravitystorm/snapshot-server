@@ -51,8 +51,10 @@ class Node < ActiveRecord::Base
     el1['version'] = self.version.to_s
     el1['changeset'] = self.changeset_id.to_s
 
-    el1['user'] = self.user.name
-    el1['uid'] = self.user_id.to_s
+    if self.user
+      el1['user'] = self.user.name
+      el1['uid'] = self.user_id.to_s
+    end
 
 
     self.tags.each do |k,v|
