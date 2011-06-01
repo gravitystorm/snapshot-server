@@ -6,6 +6,9 @@ gem 'rails', '3.0.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'libxml-ruby', '>= 2.0.5'
+gem 'spatial_adapter'
+gem 'activerecord-postgres-hstore'
 
 # Use unicorn as the web server
 # gem 'unicorn'
