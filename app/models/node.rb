@@ -56,6 +56,7 @@ class Node < ActiveRecord::Base
       el1['uid'] = self.user_id.to_s
     end
 
+    el1['status'] = ["complete", "incomplete"].choice
 
     self.tags.each do |k,v|
       el2 = XML::Node.new('tag')
