@@ -10,7 +10,7 @@ class Way < ActiveRecord::Base
   has_many :containing_relations, :class_name => "Relation", :through => :containing_relation_members, :source => :relation
 
   validates_presence_of :id, :on => :update
-  validates_presence_of :changeset_id,:version,  :timestamp
+  validates_presence_of :changeset_id,:version,  :tstamp
   validates_uniqueness_of :id
   validates_numericality_of :changeset_id, :version, :integer_only => true
   validates_numericality_of :id, :on => :update, :integer_only => true
