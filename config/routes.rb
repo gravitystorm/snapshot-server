@@ -58,6 +58,6 @@ SnapshotServer::Application.routes.draw do
 
   match 'api/way/:id/status' => 'way#status', :via => :post
   match 'api/map' => 'api#map'
-  match 'node/:id' => 'node#read'
+  match 'api/node/:id' => 'node#read'
 
 end
