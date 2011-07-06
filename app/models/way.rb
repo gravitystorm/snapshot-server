@@ -34,7 +34,7 @@ class Way < ActiveRecord::Base
       el1['uid'] = self.user_id.to_s
     end
 
-    el1['status'] = ["complete", "incomplete"].choice
+    el1['status'] = self.status || WAY_STATUS_DEFAULT
 
     # make sure nodes are output in sequence_id order
     ordered_nodes = []
