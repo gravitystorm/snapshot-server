@@ -13,4 +13,12 @@ class NodeController < ApplicationController
       render :text => "", :status => :gone
     end
   end
+
+  # set the status for the given node
+  def status
+    @node = Node.find(params[:id])
+    @node.status = request.raw_post
+    @node.save
+    render :text => @node.status
+  end
 end

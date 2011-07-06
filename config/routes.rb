@@ -57,6 +57,7 @@ SnapshotServer::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
 
   match 'api/way/:id/status' => 'way#status', :via => :post
+  match 'api/node/:id/status' => 'node#status', :via => :post
   match 'api/map' => 'api#map'
   match 'api/node/:id' => 'node#read'
 
