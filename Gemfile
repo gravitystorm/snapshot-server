@@ -9,6 +9,7 @@ gem 'pg'
 gem 'libxml-ruby', '>= 2.0.5'
 gem 'spatial_adapter'
 gem 'activerecord-postgres-hstore'
+gem 'rmagick'
 
 # Use unicorn as the web server
 # gem 'unicorn'
