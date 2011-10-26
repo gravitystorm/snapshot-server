@@ -11,4 +11,4 @@
   # Default status of ways
   WAY_STATUS_DEFAULT = "incomplete"
   # Default status of nodes
-  NODE_STATUS_DEFAULT = "complete"
+  NODE_STATUS_DEFAULT = "incomplete"
