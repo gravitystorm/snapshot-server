@@ -12,3 +12,5 @@ psql -f /usr/share/postgresql/8.4/contrib/postgis-1.5/spatial_ref_sys.sql snapsh
 psql -f /home/andy/bin/osmosis/osmosis-0.39/script/pgsnapshot_schema_0.6.sql snapshot-dev
 
 Then load the data using osmosis --read-xml --write-pgsql
+
+After the data is loaded, you need to run rake db:migrate in order to add the status columns.
