@@ -1,4 +1,5 @@
 .bundle
+routes.txt
 db/*.sqlite3
 log/*.log
 tmp/
