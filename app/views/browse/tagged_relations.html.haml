@@ -1,3 +1,5 @@
 %h1= t ".title"
 
 = render "entities", :entities => @relations, :default => RELATION_STATUS_DEFAULT
+
+= will_paginate @relations

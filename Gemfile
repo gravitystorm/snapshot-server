@@ -11,6 +11,7 @@ gem 'spatial_adapter'
 gem 'activerecord-postgres-hstore'
 gem 'rmagick'
 gem 'haml-rails'
+gem 'will_paginate'
 
 # Use unicorn as the web server
 # gem 'unicorn'
