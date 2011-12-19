@@ -1,0 +1,12 @@
+table.entities td {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+table.entities td.changed {
+  background-color: #ccff99;
+}
+
+table.entities td.default {
+  color: orange;
+}

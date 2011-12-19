@@ -15,6 +15,8 @@ class Way < ActiveRecord::Base
   validates_numericality_of :changeset_id, :version, :integer_only => true
   validates_numericality_of :id, :on => :update, :integer_only => true
 
+  default_scope order('id asc')
+
   def self.with_tags
     where("array_length(akeys(tags), 1) > 0")
   end

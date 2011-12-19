@@ -14,6 +14,8 @@ class Relation < ActiveRecord::Base
   validates_inclusion_of :visible, :in => [ true, false ]
   validates_numericality_of :id, :on => :update, :integer_only => true
   validates_numericality_of :changeset_id, :version, :integer_only => true
+
+  default_scope order('id asc')
   
   TYPES = {'N' => "node", 'W' => "way", 'R' => "relation"}
 

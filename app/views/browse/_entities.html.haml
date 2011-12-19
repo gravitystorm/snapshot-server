@@ -1,4 +1,4 @@
-%table
+%table{:class => "entities"}
   %thead
     %th= t ".id"
     %th= t ".status"
@@ -7,6 +7,10 @@
   - entities.each do |entity|
     %tr
       %td= entity.id
-      %td
-        = entity.status? || default
+      - if entity.status? && (entity.status != default)
+        %td{:class => "changed"}
+          = entity.status
+      - else
+        %td{:class => "default"}
+          = default
       %td= entity.tags
