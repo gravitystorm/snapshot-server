@@ -1,0 +1,7 @@
+%h1= t ".title"
+
+%p= t ".currently_loaded"
+%ul
+  %li= t ".number_of_nodes", :count => @node_count
+  %li= t ".number_of_ways", :count => @way_count
+  %li= t ".number_of_relations", :count => @rel_count

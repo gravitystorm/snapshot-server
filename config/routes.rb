@@ -61,4 +61,6 @@ SnapshotServer::Application.routes.draw do
   match 'api/map' => 'api#map'
   match 'api/node/:id' => 'node#read'
 
+  root :to => "site#index"
+
 end

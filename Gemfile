@@ -10,6 +10,7 @@ gem 'libxml-ruby', '>= 2.0.5'
 gem 'spatial_adapter'
 gem 'activerecord-postgres-hstore'
 gem 'rmagick'
+gem 'haml-rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'

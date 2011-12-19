@@ -2,4 +2,19 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  site:
+    index:
+      currently_loaded: "In this database, the following data is currently loaded:"
+      number_of_nodes:
+        zero: "There are no nodes"
+        one: "There is only one node"
+        other: "There are %{count} nodes"
+      number_of_relations:
+        zero: "There are no relations"
+        one: "There is only one relation"
+        other: "There are %{count} relations"
+      number_of_ways:
+        zero: "There are no ways"
+        one: "There is only one way"
+        other: "There are %{count} ways"
+      title: "Snapshot Server"
