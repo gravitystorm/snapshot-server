@@ -25,6 +25,7 @@ module Entity
     end
   end
 
+  # Show the tags in a fashion recognisable to OSM contributors, rather than a ruby Hash.to_s format
   def tags_string
     tags.map {|k,v| "#{k}=#{v}"}.join(", ")
   end
