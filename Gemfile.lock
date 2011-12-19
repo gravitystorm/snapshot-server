@@ -31,6 +31,8 @@ GEM
       activesupport (= 3.0.7)
     activesupport (3.0.7)
     arel (2.0.10)
+    bootstrap-will_paginate (0.0.1)
+      will_paginate
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -84,6 +86,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgres-hstore
+  bootstrap-will_paginate
   haml-rails
   libxml-ruby (>= 2.0.5)
   pg

@@ -1,16 +1,18 @@
-%table{:class => "entities"}
+%table.condensed-table
   %thead
-    %th= t ".id"
-    %th= t ".status"
-    %th= t ".tags"
-  %tbody
-  - entities.each do |entity|
     %tr
-      %td= entity.id
-      - if entity.status? && (entity.status != default)
-        %td{:class => "changed"}
-          = entity.status
-      - else
-        %td{:class => "default"}
-          = default
-      %td= entity.tags_string
+      %th= t ".id"
+      %th= t ".status"
+      %th= t ".tags"
+  %tbody
+    - entities.each do |entity|
+      %tr
+        %td= entity.id
+        %td
+          - if entity.status? && (entity.status != default)
+            %span{:class => [:label, :success]}
+              = entity.status
+          - else
+            %span{:class => [:label]}
+              = default
+        %td= entity.tags_string

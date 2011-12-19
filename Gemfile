@@ -12,6 +12,7 @@ gem 'activerecord-postgres-hstore'
 gem 'rmagick'
 gem 'haml-rails'
 gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Use unicorn as the web server
 # gem 'unicorn'
