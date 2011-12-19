@@ -1,7 +1,7 @@
 class Relation < ActiveRecord::Base
   require 'xml/libxml'
 
-  belongs_to :user
+  include Entity
 
   has_many :relation_members, :order => 'sequence_id'
 
@@ -14,14 +14,8 @@ class Relation < ActiveRecord::Base
   validates_inclusion_of :visible, :in => [ true, false ]
   validates_numericality_of :id, :on => :update, :integer_only => true
   validates_numericality_of :changeset_id, :version, :integer_only => true
-
-  default_scope order('id asc')
   
   TYPES = {'N' => "node", 'W' => "way", 'R' => "relation"}
-
-  def self.with_tags
-    where("array_length(akeys(tags), 1) > 0")
-  end
 
   def to_xml
     doc = OSM::API.new.get_xml_doc

@@ -2,22 +2,16 @@ class Node < ActiveRecord::Base
   require 'xml/libxml'
   require 'osm'
 
+  include Entity
+
   has_many :way_nodes
   has_many :ways, :through => :way_nodes
-
-  belongs_to :user
   
   validates_presence_of :id, :on => :update
   validates_presence_of :tstamp, :version,  :changeset_id
   validates_uniqueness_of :id
   validates_numericality_of :changeset_id, :version, :integer_only => true
   validates_numericality_of :id, :on => :update, :integer_only => true
-
-  default_scope order('id asc')
-
-  def self.with_tags
-    where("array_length(akeys(tags), 1) > 0")
-  end
 
   # Sanity check the latitude and longitude and add an error if it's broken
   def validate_position

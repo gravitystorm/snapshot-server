@@ -1,7 +1,7 @@
 class Way < ActiveRecord::Base
   require 'xml/libxml'
- 
-  belongs_to :user
+
+  include Entity
   
   has_many :way_nodes, :order => 'sequence_id'
   has_many :nodes, :through => :way_nodes, :order => 'sequence_id'
@@ -14,12 +14,6 @@ class Way < ActiveRecord::Base
   validates_uniqueness_of :id
   validates_numericality_of :changeset_id, :version, :integer_only => true
   validates_numericality_of :id, :on => :update, :integer_only => true
-
-  default_scope order('id asc')
-
-  def self.with_tags
-    where("array_length(akeys(tags), 1) > 0")
-  end
 
   # Find a way given it's ID, and in a single SQL call also grab its nodes and tags
   def to_xml
