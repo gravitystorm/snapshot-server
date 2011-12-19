@@ -12,4 +12,8 @@ module Entity
       where("array_length(akeys(tags), 1) > 0")
     end
   end
+
+  def tags_string
+    tags.map {|k,v| "#{k}=#{v}"}.join(", ")
+  end
 end
