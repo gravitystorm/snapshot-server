@@ -13,6 +13,10 @@ class Node < ActiveRecord::Base
   validates_numericality_of :changeset_id, :version, :integer_only => true
   validates_numericality_of :id, :on => :update, :integer_only => true
 
+  def self.default_status
+    NODE_STATUS_DEFAULT
+  end
+
   # Sanity check the latitude and longitude and add an error if it's broken
   def validate_position
     errors.add_to_base("Node is not in the world") unless in_world?

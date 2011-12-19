@@ -19,6 +19,7 @@ en:
   site:
     index:
       currently_loaded: "In this database, the following data is currently loaded:"
+      looking_at_status: "Looking at the status of tagged objects, we can see the following:"
       number_of_nodes:
         zero: "There are no nodes"
         one: "There is only one node"
@@ -32,4 +33,6 @@ en:
         one: "There is only one way"
         other: "There are %{count} ways"
       only_tagged: "However, considering only entities that actually have tags on them, there are:"
-      title: "Snapshot Server"
+      percentage_nodes: "%{count}% of tagged nodes have been assessed"
+      percentage_relations: "%{count}% of tagged relations have been assessed"
+      percentage_ways: "%{count}% of tagged ways have been assessed"
