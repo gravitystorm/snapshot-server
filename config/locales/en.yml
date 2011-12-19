@@ -20,4 +20,5 @@ en:
         zero: "There are no ways"
         one: "There is only one way"
         other: "There are %{count} ways"
+      only_tagged: "However, considering only entities that actually have tags on them, there are:"
       title: "Snapshot Server"

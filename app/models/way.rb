@@ -15,6 +15,10 @@ class Way < ActiveRecord::Base
   validates_numericality_of :changeset_id, :version, :integer_only => true
   validates_numericality_of :id, :on => :update, :integer_only => true
 
+  def self.with_tags
+    where("array_length(akeys(tags), 1) > 0")
+  end
+
   # Find a way given it's ID, and in a single SQL call also grab its nodes and tags
   def to_xml
     doc = OSM::API.new.get_xml_doc

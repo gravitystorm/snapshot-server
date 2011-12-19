@@ -17,6 +17,10 @@ class Relation < ActiveRecord::Base
   
   TYPES = {'N' => "node", 'W' => "way", 'R' => "relation"}
 
+  def self.with_tags
+    where("array_length(akeys(tags), 1) > 0")
+  end
+
   def to_xml
     doc = OSM::API.new.get_xml_doc
     doc.root << to_xml_node()
