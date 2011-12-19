@@ -8,6 +8,6 @@
 
 %p= t ".only_tagged"
 %ul
-  %li= t ".number_of_nodes", :count => @tagged_node_count
-  %li= t ".number_of_ways", :count => @tagged_way_count
-  %li= t ".number_of_relations", :count => @tagged_rel_count
+  %li= link_to (t ".number_of_nodes", :count => @tagged_node_count), browse_tagged_nodes_path
+  %li= link_to (t ".number_of_ways", :count => @tagged_way_count), browse_tagged_ways_path
+  %li= link_to (t ".number_of_relations", :count => @tagged_rel_count), browse_tagged_relations_path

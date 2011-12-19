@@ -12,3 +12,5 @@
   WAY_STATUS_DEFAULT = "incomplete"
   # Default status of nodes
   NODE_STATUS_DEFAULT = "incomplete"
+  # Default status of relations
+  RELATION_STATUS_DEFAULT = "incomplete"

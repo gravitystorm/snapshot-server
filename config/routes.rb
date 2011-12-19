@@ -56,6 +56,12 @@ SnapshotServer::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
 
+  namespace :browse do
+    get 'tagged_nodes'
+    get 'tagged_ways'
+    get 'tagged_relations'
+  end
+
   match 'api/way/:id/status' => 'way#status', :via => :post
   match 'api/node/:id/status' => 'node#status', :via => :post
   match 'api/map' => 'api#map'

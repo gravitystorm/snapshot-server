@@ -1,0 +1,12 @@
+%table
+  %thead
+    %th= t ".id"
+    %th= t ".status"
+    %th= t ".tags"
+  %tbody
+  - entities.each do |entity|
+    %tr
+      %td= entity.id
+      %td
+        = entity.status? || default
+      %td= entity.tags
