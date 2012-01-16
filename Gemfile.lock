@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/ctran/annotate_models.git
+  revision: 032565653b98e0790ddd8a070579566eb60a850c
+  specs:
+    annotate (2.4.1.beta1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -109,6 +115,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgis-adapter
   activerecord-postgres-hstore
+  annotate!
   bootstrap-will_paginate
   haml-rails
   libxml-ruby (>= 2.0.5)

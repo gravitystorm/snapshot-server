@@ -14,6 +14,10 @@ gem 'haml-rails'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
+group :development do
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git', require: false
+end
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
