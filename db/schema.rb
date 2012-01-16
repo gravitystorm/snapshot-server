@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,17 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616145639) do
+ActiveRecord::Schema.define(:version => 20120116130727) do
 
   create_table "nodes", :id => false, :force => true do |t|
-    t.integer  "id",           :limit => 8,   :null => false
-    t.integer  "version",                     :null => false
-    t.integer  "user_id",                     :null => false
-    t.datetime "tstamp",                      :null => false
-    t.integer  "changeset_id", :limit => 8,   :null => false
+    t.integer  "id",           :limit => 8,                             :null => false
+    t.integer  "version",                                               :null => false
+    t.integer  "user_id",                                               :null => false
+    t.datetime "tstamp",                                                :null => false
+    t.integer  "changeset_id", :limit => 8,                             :null => false
     t.hstore   "tags"
-    t.point    "geom",         :limit => nil,                 :srid => 4326
-    t.string   "status"
+    t.spatial  "geom",         :limit => {:srid=>4326, :type=>"point"}
   end
 
   add_index "nodes", ["geom"], :name => "idx_nodes_geom", :spatial => true
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20110616145639) do
     t.datetime "tstamp",                    :null => false
     t.integer  "changeset_id", :limit => 8, :null => false
     t.hstore   "tags"
-    t.string   "status"
   end
 
   create_table "schema_info", :id => false, :force => true do |t|
@@ -70,7 +69,6 @@ ActiveRecord::Schema.define(:version => 20110616145639) do
     t.integer  "changeset_id", :limit => 8, :null => false
     t.hstore   "tags"
     t.string   "nodes",        :limit => 8
-    t.string   "status"
   end
 
 end
