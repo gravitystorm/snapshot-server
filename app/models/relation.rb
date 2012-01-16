@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: relations
+#
+#  id           :integer(8)      not null, primary key
+#  version      :integer         not null
+#  user_id      :integer         not null
+#  tstamp       :datetime        not null
+#  changeset_id :integer(8)      not null
+#  tags         :hstore
+#
+
 class Relation < ActiveRecord::Base
   require 'xml/libxml'
 

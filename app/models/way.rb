@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: ways
+#
+#  id           :integer(8)      not null, primary key
+#  version      :integer         not null
+#  user_id      :integer         not null
+#  tstamp       :datetime        not null
+#  changeset_id :integer(8)      not null
+#  tags         :hstore
+#  nodes        :string(8)
+#
+
 class Way < ActiveRecord::Base
   require 'xml/libxml'
 

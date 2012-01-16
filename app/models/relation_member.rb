@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: relation_members
+#
+#  relation_id :integer(8)      not null, primary key
+#  member_id   :integer(8)      not null
+#  member_type :string(1)       not null
+#  member_role :text            not null
+#  sequence_id :integer         not null
+#
+
 class RelationMember < ActiveRecord::Base
 
   belongs_to :relation
