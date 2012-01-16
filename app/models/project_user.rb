@@ -14,4 +14,9 @@ class ProjectUser < ActiveRecord::Base
   validates :project_id, :presence => true
   validates :osm_id, :presence => true
   validates :name, :presence => true
+
+  def update_from(user)
+    self.osm_id = user.id
+    self.name = user.name
+  end
 end

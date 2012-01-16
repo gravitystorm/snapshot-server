@@ -20,4 +20,13 @@ class ProjectWay < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :tstamp, :presence => true
   validates :changeset_id, :presence => true
+
+  def update_from(way)
+    self.osm_id = way.id
+    self.version = way.version
+    self.user_id = way.user_id
+    self.tstamp = way.tstamp
+    self.changeset_id = way.changeset_id
+    self.tags = way.tags
+  end
 end

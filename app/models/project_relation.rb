@@ -21,4 +21,13 @@ class ProjectRelation < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :tstamp, :presence => true
   validates :changeset_id, :presence => true
+
+  def update_from(relation)
+    self.osm_id = relation.id
+    self.version = relation.version
+    self.user_id = relation.user_id
+    self.tstamp = relation.tstamp
+    self.changeset_id = relation.changeset_id
+    self.tags = relation.tags
+  end
 end

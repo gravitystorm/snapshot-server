@@ -18,7 +18,6 @@ class ProjectRelationMember < ActiveRecord::Base
   validates :relation_id, :presence => true
   validates :member_id, :presence => true
   validates :member_type, :presence => true
-  validates :member_role, :presence => true
   validates :sequence_id, :presence => true
 
   def update_from(rm)

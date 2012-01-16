@@ -25,6 +25,34 @@ class Project < ActiveRecord::Base
       pn.save!
     end
 
-    # ...etc...
+    Relation.all.each do |relation|
+      pr = self.project_relations.new
+      pr.update_from(relation)
+      pr.save!
+    end
+
+    RelationMember.all.each do |relation_member|
+      prm = self.project_relation_members.new
+      prm.update_from(relation_member)
+      prm.save!
+    end
+
+    WayNode.all.each do |way_node|
+      pwn = self.project_way_nodes.new
+      pwn.update_from(way_node)
+      pwn.save!
+    end
+
+    Way.all.each do |way|
+      pw = self.project_ways.new
+      pw.update_from(way)
+      pw.save!
+    end
+
+    User.all.each do |user|
+      pu = self.project_users.new
+      pu.update_from(user)
+      pu.save!
+    end
   end
 end

@@ -16,4 +16,10 @@ class ProjectWayNode < ActiveRecord::Base
   validates :way_id, :presence => true
   validates :node_id, :presence => true
   validates :sequence_id, :presence => true
+
+  def update_from(way_node)
+    self.way_id = way_node.way_id
+    self.node_id = way_node.node_id
+    self.sequence_id = way_node.sequence_id
+  end
 end
