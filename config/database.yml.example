@@ -1,7 +1,7 @@
 # SQLite version 3.x
 #   gem install sqlite3
 development:
-  adapter: postgresql
+  adapter: postgis
   database: snapshot-dev
   host: /var/run/postgresql/
   encoding: utf8
@@ -10,13 +10,13 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  adapter: postgresql
+  adapter: postgis
   database: snapshot-test
   host: /var/run/postgresql/
   encoding: utf8
 
 production:
-  adapter: postgresql
+  adapter: postgis
   database: snapshot-prod
   host: /var/run/postgresql/
   encoding: utf8

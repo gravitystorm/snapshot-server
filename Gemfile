@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
 gem 'libxml-ruby', '>= 2.0.5'
-gem 'spatial_adapter'
+gem 'activerecord-postgis-adapter'
 gem 'activerecord-postgres-hstore'
 gem 'rmagick'
 gem 'haml-rails'
