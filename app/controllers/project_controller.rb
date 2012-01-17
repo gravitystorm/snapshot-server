@@ -1,10 +1,11 @@
 class ProjectController < ApplicationController
+  before_filter :load_project, :except => :index
+
   def index
     @projects = Project.all
   end
 
   def show
-    @project = Project.find(params[:id])
     @node_count = @project.nodes.count
     @way_count = @project.ways.count
     @rel_count = @project.relations.count
@@ -19,8 +20,13 @@ class ProjectController < ApplicationController
   end
 
   def transfer
-    @project = Project.find(params[:id])
     @project.transfer
     redirect_to @project
+  end
+
+  private
+
+  def load_project
+    @project = Project.find(params[:id])
   end
 end
