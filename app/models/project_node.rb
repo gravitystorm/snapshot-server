@@ -17,6 +17,8 @@
 #
 
 class ProjectNode < ActiveRecord::Base
+  include Entity
+
   belongs_to :project
 
   validates :project_id, :presence => true
@@ -25,6 +27,10 @@ class ProjectNode < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :tstamp, :presence => true
   validates :changeset_id, :presence => true
+
+  def self.default_status
+    NODE_STATUS_DEFAULT
+  end
 
   def update_from(node)
     self.osm_id = node.id

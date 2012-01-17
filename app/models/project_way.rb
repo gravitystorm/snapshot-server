@@ -14,6 +14,8 @@
 #
 
 class ProjectWay < ActiveRecord::Base
+  include Entity
+
   belongs_to :project
 
   validates :osm_id, :presence => true
@@ -21,6 +23,10 @@ class ProjectWay < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :tstamp, :presence => true
   validates :changeset_id, :presence => true
+
+  def self.default_status
+    WAY_STATUS_DEFAULT
+  end
 
   def update_from(way)
     self.osm_id = way.id

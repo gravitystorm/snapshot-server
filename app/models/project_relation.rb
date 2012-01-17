@@ -14,6 +14,8 @@
 #
 
 class ProjectRelation < ActiveRecord::Base
+  include Entity
+
   belongs_to :project
 
   validates :project_id, :presence => true
@@ -22,6 +24,10 @@ class ProjectRelation < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :tstamp, :presence => true
   validates :changeset_id, :presence => true
+
+  def self.default_status
+    RELATION_STATUS_DEFAULT
+  end
 
   def update_from(relation)
     self.osm_id = relation.id
