@@ -11,6 +11,7 @@ gem 'activerecord-postgis-adapter'
 gem 'activerecord-postgres-hstore'
 gem 'rmagick'
 gem 'haml-rails'
+gem 'formtastic'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 

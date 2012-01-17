@@ -1,4 +1,8 @@
 %h2= t ".title", :name => @project.title
+
+.tasks
+  = link_to (t ".edit"), edit_project_path(@project)
+
 %p= t ".currently_loaded"
 %ul
   %li= t ".number_of_nodes", :count => @node_count

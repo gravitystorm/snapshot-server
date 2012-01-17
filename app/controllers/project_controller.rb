@@ -19,6 +19,9 @@ class ProjectController < ApplicationController
     @percentage_rels = @project.relations.percentage_status_changed
   end
 
+  def edit
+  end
+
   def tagged_nodes
     @nodes = @project.nodes.with_tags.page(params[:page])
   end
