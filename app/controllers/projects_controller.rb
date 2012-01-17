@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :load_project, :except => [:index, :new]
+  before_filter :load_project, :except => [:index, :new, :create]
 
   def index
     @projects = Project.all

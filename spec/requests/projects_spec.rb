@@ -10,6 +10,24 @@ describe "Projects" do
     end
   end
 
+  context "new" do
+    before do
+      visit projects_path
+    end
+
+    it "should have a link to create a new project" do
+      page.should have_link("New Project")
+    end
+
+    it "should let you create a new project" do
+      visit projects_path
+      click_on "New Project"
+      fill_in :title, :with => "My First Project"
+      click_on "Create Project"
+      page.should have_content("My First Project")
+    end
+  end
+
   context "edit" do
     let(:project) { FactoryGirl.create(:project) }
 
