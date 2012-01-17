@@ -1,11 +1,9 @@
 SnapshotServer::Application.routes.draw do
 
-  resources :project
-
-  namespace :browse do
-    get 'tagged_nodes'
-    get 'tagged_ways'
-    get 'tagged_relations'
+  resources :project do
+    get 'tagged_nodes', :on => :member
+    get 'tagged_ways', :on => :member
+    get 'tagged_relations', :on => :member
   end
 
   match 'api/way/:id/status' => 'way#status', :via => :post

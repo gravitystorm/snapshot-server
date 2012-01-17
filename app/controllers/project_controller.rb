@@ -19,6 +19,18 @@ class ProjectController < ApplicationController
     @percentage_rels = @project.relations.percentage_status_changed
   end
 
+  def tagged_nodes
+    @nodes = @project.nodes.with_tags.page(params[:page])
+  end
+
+  def tagged_ways
+    @ways = @project.ways.with_tags.page(params[:page])
+  end
+
+  def tagged_relations
+    @relations = @project.relations.with_tags.page(params[:page])
+  end
+
   def transfer
     @project.transfer
     redirect_to @project
