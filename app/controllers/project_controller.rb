@@ -22,6 +22,15 @@ class ProjectController < ApplicationController
   def edit
   end
 
+  def update
+    if @project.update_attributes(params[:project])
+      set_flash_message(:success)
+      redirect_to action: :show
+    else
+      render :edit
+    end
+  end
+
   def tagged_nodes
     @nodes = @project.nodes.with_tags.page(params[:page])
   end

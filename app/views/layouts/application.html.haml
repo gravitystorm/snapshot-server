@@ -8,4 +8,9 @@
   %body
     .container
       %h1= link_to t(".title"), root_path
+      .flash-container
+        - [:alert, :notice].each do |type|
+          - if flash.key? type
+            .flash{class: type}
+              = flash[type]
       = yield

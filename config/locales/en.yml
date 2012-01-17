@@ -17,7 +17,12 @@ en:
     application:
       title: "Snapshot Server"
   project:
+    edit:
+      title: "Edit project details"
+    update:
+      success: "Project updated"
     show:
+      edit: "Edit project details"
       title: "Project '%{name}'"
       currently_loaded: "In this project, the following data is currently loaded:"
       looking_at_status: "Looking at the status of tagged objects, we can see the following:"
