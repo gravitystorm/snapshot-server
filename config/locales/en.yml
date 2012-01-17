@@ -16,9 +16,10 @@ en:
   layouts:
     application:
       title: "Snapshot Server"
-  site:
-    index:
-      currently_loaded: "In this database, the following data is currently loaded:"
+  project:
+    show:
+      title: "Project '%{name}'"
+      currently_loaded: "In this project, the following data is currently loaded:"
       looking_at_status: "Looking at the status of tagged objects, we can see the following:"
       number_of_nodes:
         zero: "There are no nodes"

@@ -1,17 +1,5 @@
-%p= t ".currently_loaded"
-%ul
-  %li= t ".number_of_nodes", :count => @node_count
-  %li= t ".number_of_ways", :count => @way_count
-  %li= t ".number_of_relations", :count => @rel_count
+%h1= t ".current_projects"
 
-%p= t ".only_tagged"
 %ul
-  %li= link_to (t ".number_of_nodes", :count => @tagged_node_count), browse_tagged_nodes_path
-  %li= link_to (t ".number_of_ways", :count => @tagged_way_count), browse_tagged_ways_path
-  %li= link_to (t ".number_of_relations", :count => @tagged_rel_count), browse_tagged_relations_path
-
-%p= t ".looking_at_status"
-%ul
-  %li= t ".percentage_nodes", :count => @percentage_nodes
-  %li= t ".percentage_ways", :count => @percentage_ways
-  %li= t ".percentage_relations", :count => @percentage_rels
+  - @projects.each do |p|
+    %li= link_to p.title, p
