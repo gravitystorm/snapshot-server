@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120116155120) do
+ActiveRecord::Schema.define(:version => 20120117123822) do
 
   create_table "nodes", :id => false, :force => true do |t|
     t.integer  "id",           :limit => 8,                             :null => false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120116155120) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.spatial  "geom",         :limit => {:srid=>4326, :type=>"point"}
+    t.text     "status"
   end
 
   create_table "project_relation_members", :force => true do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20120116155120) do
     t.datetime "tstamp",                    :null => false
     t.integer  "changeset_id", :limit => 8, :null => false
     t.hstore   "tags"
+    t.text     "status"
   end
 
   create_table "project_users", :force => true do |t|
@@ -78,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20120116155120) do
     t.datetime "tstamp",                    :null => false
     t.integer  "changeset_id", :limit => 8, :null => false
     t.hstore   "tags"
+    t.text     "status"
   end
 
   create_table "projects", :force => true do |t|
