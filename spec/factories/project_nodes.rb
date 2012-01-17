@@ -13,6 +13,7 @@
 #  created_at   :datetime
 #  updated_at   :datetime
 #  geom         :spatial({:srid=
+#  status       :text
 #
 
 FactoryGirl.define do

@@ -10,6 +10,7 @@
 #  tstamp       :datetime        not null
 #  changeset_id :integer(8)      not null
 #  tags         :hstore
+#  status       :text
 #
 
 class ProjectWay < ActiveRecord::Base
