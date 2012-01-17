@@ -16,7 +16,7 @@ en:
   layouts:
     application:
       title: "Snapshot Server"
-  project:
+  projects:
     edit:
       title: "Edit project details"
     update:

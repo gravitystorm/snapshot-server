@@ -1,6 +1,14 @@
 require "spec_helper"
 
 describe "Projects" do
+  context "index" do
+    let!(:project) { FactoryGirl.create(:project) }
+
+    it "should show you a list of projects" do
+      visit projects_path
+      page.should have_link(project.title)
+    end
+  end
 
   context "edit" do
     let(:project) { FactoryGirl.create(:project) }

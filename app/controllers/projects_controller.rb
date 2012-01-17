@@ -1,5 +1,5 @@
-class ProjectController < ApplicationController
-  before_filter :load_project, :except => :index
+class ProjectsController < ApplicationController
+  before_filter :load_project, :except => [:index, :new]
 
   def index
     @projects = Project.all
@@ -19,13 +19,27 @@ class ProjectController < ApplicationController
     @percentage_rels = @project.relations.percentage_status_changed
   end
 
+  def new
+    @project = Project.new
+  end
+
+  def create
+    @project = Project.new(params[:project])
+    if @project.save
+      set_flash_message(:success)
+      redirect_to @project
+    else
+      render :new
+    end
+  end
+
   def edit
   end
 
   def update
     if @project.update_attributes(params[:project])
       set_flash_message(:success)
-      redirect_to action: :show
+      redirect_to @project
     else
       render :edit
     end

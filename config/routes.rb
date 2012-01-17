@@ -1,6 +1,6 @@
 SnapshotServer::Application.routes.draw do
 
-  resources :project do
+  resources :projects do
     get 'tagged_nodes', :on => :member
     get 'tagged_ways', :on => :member
     get 'tagged_relations', :on => :member

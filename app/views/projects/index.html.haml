@@ -1,5 +1,8 @@
 %h1= t ".current_projects"
 
+.tasks
+  = link_to t(".new_project"), new_project_path
+
 %ul
   - @projects.each do |p|
     %li= link_to p.title, p
