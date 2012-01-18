@@ -8,10 +8,15 @@ Spork.prefork do
 
   ENV["RAILS_ENV"] ||= 'test'
 
+  # Spork workaround to stop Devise loading the User model in the prefork
+  require "rails/application"
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'database_cleaner'
+  require 'declarative_authorization/maintenance'
 
   RSpec.configure do |config|
     # == Mock Framework
@@ -30,6 +35,9 @@ Spork.prefork do
 
     # Render views in controller tests
     config.render_views
+
+    config.include Devise::TestHelpers, type: :controller
+    config.include Authorization::TestHelper, type: :controller
 
     config.before(:suite) do
       DatabaseCleaner.strategy = :transaction

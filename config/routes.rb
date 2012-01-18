@@ -1,5 +1,7 @@
 SnapshotServer::Application.routes.draw do
 
+  devise_for :admins
+
   resources :projects do
     get 'tagged_nodes', :on => :member
     get 'tagged_ways', :on => :member

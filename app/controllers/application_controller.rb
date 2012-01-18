@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
+  before_filter :set_auth_user
+  filter_access_to :all
+  
   # Report and error to the user
   # (If anyone ever fixes Rails so it can set a http status "reason phrase",
   #  rather than only a status code and having the web engine make up a
@@ -27,5 +29,21 @@ class ApplicationController < ActionController::Base
     flash_key = if type == :success then :notice else :alert end
     options.reverse_merge!(scope: "#{controller_path.gsub('/', '.')}.#{action_name}")
     flash[flash_key] = I18n.t(type, options)
+  end
+
+  def set_auth_user
+    Authorization.current_user = current_admin
+  end
+
+  def current_user
+    current_admin
+  end
+
+  def permission_denied
+    if current_admin.nil?
+      authenticate_admin!
+    else
+      render status: :unauthorized, text: t(".application.permission_denied")
+    end
   end
 end
