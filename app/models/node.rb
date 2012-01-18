@@ -17,7 +17,7 @@ class Node < ActiveRecord::Base
 
   include Entity
 
-  has_many :way_nodes
+  has_many :way_nodes, :foreign_key => "node_id"
   has_many :ways, :through => :way_nodes
   
   validates_presence_of :id, :on => :update
@@ -35,29 +35,6 @@ class Node < ActiveRecord::Base
     errors.add_to_base("Node is not in the world") unless in_world?
   end
 
-  #
-  # Search for nodes matching tags within bounding_box
-  #
-  # Also adheres to limitations such as within max_number_of_nodes
-  #
-  def self.search(bounding_box, tags = {})
-    min_lon, min_lat, max_lon, max_lat = *bounding_box
- 
-    find_by_area(min_lat, min_lon, max_lat, max_lon,
-                    :limit => MAX_NUMBER_OF_NODES+1)  
-  end
 
-  ##
-  # the bounding box around a node, which is used for determining the changeset's
-  # bounding box
-  def bbox
-    [ longitude, latitude, longitude, latitude ]
-  end
-
-  def self.find_by_area(min_lat, min_lon, max_lat, max_lon, options)
-    self.with_scope(:find => {:conditions => ["ST_INTERSECTS(geom, setSrid(box3d('BOX3D(? ?, ? ?)'),4326))", min_lon, min_lat, max_lon, max_lat]}) do
-      return self.find(:all, options)
-    end
-  end
 
 end
