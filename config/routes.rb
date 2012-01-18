@@ -6,12 +6,16 @@ SnapshotServer::Application.routes.draw do
     get 'tagged_nodes', :on => :member
     get 'tagged_ways', :on => :member
     get 'tagged_relations', :on => :member
+    namespace :api do
+      resource :map
+      resources :way do
+        post 'status'
+      end
+      resources :node do
+        post 'status'
+      end
+    end
   end
-
-  match 'api/way/:id/status' => 'way#status', :via => :post
-  match 'api/node/:id/status' => 'node#status', :via => :post
-  match 'api/map' => 'api#map'
-  match 'api/node/:id' => 'node#read'
 
   root :to => "site#index"
 

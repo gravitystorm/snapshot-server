@@ -9,6 +9,7 @@ authorization do
                       :devise_invitations, :devise_passwords, to: :manage
     has_permission_on :site, :to => :index
     has_permission_on :projects, :to => :view
+    has_permission_on :api_maps, :to => :view
   end
 end
 

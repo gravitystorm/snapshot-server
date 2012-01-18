@@ -1,4 +1,4 @@
-class ApiController < ApplicationController
+class Api::MapsController < ApplicationController
 
   #after_filter :compress_output
 
@@ -8,9 +8,11 @@ class ApiController < ApplicationController
   include MapBoundary
   include OSM
 
-  def map
+  def show
+
+    @project = Project.find(params[:project_id])
     # Figure out the bbox
-    bbox = params['bbox']
+    bbox = params[:bbox]
 
     unless bbox and bbox.count(',') == 3
       # alternatively: report_error(TEXT['boundary_parameter_required']
@@ -32,12 +34,12 @@ class ApiController < ApplicationController
     end
 
     # FIXME um why is this area using a different order for the lat/lon from above???
-    @nodes = Node.find_by_area(min_lat, min_lon, max_lat, max_lon, :limit => MAX_NUMBER_OF_NODES+1)
+    @nodes = @project.nodes.find_by_area(min_lat, min_lon, max_lat, max_lon, :limit => MAX_NUMBER_OF_NODES+1)
     # get all the nodes, by tag not yet working, waiting for change from NickB
     # need to be @nodes (instance var) so tests in /spec can be performed
     #@nodes = Node.search(bbox, params[:tag])
 
-    node_ids = @nodes.collect(&:id)
+    node_ids = @nodes.collect(&:osm_id)
     if node_ids.length > MAX_NUMBER_OF_NODES
       report_error("You requested too many nodes (limit is #{MAX_NUMBER_OF_NODES}). Either request a smaller area, or use planet.osm")
       return
@@ -61,9 +63,9 @@ class ApiController < ApplicationController
     # find which ways are needed
     ways = Array.new
     if node_ids.length > 0
-      way_nodes = WayNode.find_all_by_node_id(node_ids)
+      way_nodes = @project.way_nodes.find_all_by_node_id(node_ids)
       way_ids = way_nodes.collect { |way_node| way_node.way_id }
-      ways = Way.find(way_ids, :include => [:way_nodes])
+      ways = @project.ways.find_all_by_osm_id(way_ids, :include => [:way_nodes])
 
       list_of_way_nodes = ways.collect { |way|
         way.way_nodes.collect { |way_node| way_node.node_id }
@@ -78,7 +80,7 @@ class ApiController < ApplicationController
     nodes_to_fetch = (list_of_way_nodes.uniq - node_ids) - [0]
 
     if nodes_to_fetch.length > 0
-      @nodes += Node.find(nodes_to_fetch)
+      @nodes += @project.nodes.find_all_by_osm_id(nodes_to_fetch)
     end
 
     visible_nodes = {}
@@ -87,7 +89,7 @@ class ApiController < ApplicationController
 
     @nodes.each do |node|
       #if node.visible?
-        doc.root << node.to_xml_node(changeset_cache, user_display_name_cache)
+        doc.root << node.to_xml_node()
         visible_nodes[node.id] = node
       #end
     end
@@ -100,15 +102,15 @@ class ApiController < ApplicationController
       #end
     end
 
-    relations = Relation.find_for_nodes(visible_nodes.keys) +
-                Relation.find_for_ways(way_ids)
+    relations = @project.relations.find_for_nodes(visible_nodes.keys) +
+                @project.relations.find_for_ways(way_ids)
 
     # we do not normally return the "other" partners referenced by an relation,
     # e.g. if we return a way A that is referenced by relation X, and there's
     # another way B also referenced, that is not returned. But we do make
     # an exception for cases where an relation references another *relation*;
     # in that case we return that as well (but we don't go recursive here)
-    relations += Relation.find_for_relations(relations.collect { |r| r.id })
+    relations += @project.relations.find_for_relations(relations.collect { |r| r.id })
 
     # this "uniq" may be slightly inefficient; it may be better to first collect and output
     # all node-related relations, then find the *not yet covered* way-related ones etc.
