@@ -53,39 +53,6 @@ class Node < ActiveRecord::Base
   def bbox
     [ longitude, latitude, longitude, latitude ]
   end
- 
-  def to_xml
-    doc = OSM::API.new.get_xml_doc
-    doc.root << to_xml_node()
-    return doc
-  end
-
-  def to_xml_node(changeset_cache = {}, user_display_name_cache = {})
-    el1 = XML::Node.new 'node'
-    el1['id'] = self.id.to_s
-    el1['lat'] = self.geom.y.to_s
-    el1['lon'] = self.geom.x.to_s
-    el1['version'] = self.version.to_s
-    el1['changeset'] = self.changeset_id.to_s
-
-    if self.user
-      el1['user'] = self.user.name
-      el1['uid'] = self.user_id.to_s
-    end
-
-    el1['status'] = self.status || NODE_STATUS_DEFAULT
-
-    self.tags.each do |k,v|
-      el2 = XML::Node.new('tag')
-      el2['k'] = k.to_s
-      el2['v'] = v.to_s
-      el1 << el2
-    end
-
-    el1['timestamp'] = self.tstamp.xmlschema
-    return el1
-  end
-
 
   def self.find_by_area(min_lat, min_lon, max_lat, max_lon, options)
     self.with_scope(:find => {:conditions => ["ST_INTERSECTS(geom, setSrid(box3d('BOX3D(? ?, ? ?)'),4326))", min_lon, min_lat, max_lon, max_lat]}) do

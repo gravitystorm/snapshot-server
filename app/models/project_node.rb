@@ -17,9 +17,13 @@
 #
 
 class ProjectNode < ActiveRecord::Base
+  require 'xml/libxml'
+  require 'osm'
+
   include Entity
 
   belongs_to :project
+  belongs_to :user, :class_name => "ProjectUser"
 
   validates :project_id, :presence => true
   validates :osm_id, :presence => true
@@ -40,5 +44,36 @@ class ProjectNode < ActiveRecord::Base
     self.changeset_id = node.changeset_id
     self.tags = node.tags
     self.geom = node.geom
+  end
+
+  def to_xml
+    doc = OSM::API.new.get_xml_doc
+    doc.root << to_xml_node()
+    return doc
+  end
+
+  def to_xml_node()
+    el1 = XML::Node.new 'node'
+    el1['id'] = self.osm_id.to_s
+    el1['lat'] = self.geom.y.to_s
+    el1['lon'] = self.geom.x.to_s
+    el1['version'] = self.version.to_s
+    el1['changeset'] = self.changeset_id.to_s
+    el1['status'] = self.status || NODE_STATUS_DEFAULT
+    el1['timestamp'] = self.tstamp.xmlschema
+
+    if self.user
+      el1['user'] = self.user.name
+      el1['uid'] = self.user_id.to_s
+    end
+
+    self.tags.each do |k,v|
+      el2 = XML::Node.new('tag')
+      el2['k'] = k.to_s
+      el2['v'] = v.to_s
+      el1 << el2
+    end
+
+    return el1
   end
 end

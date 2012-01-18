@@ -24,5 +24,7 @@ FactoryGirl.define do
     version 4
     tstamp Time.now
     changeset_id 5
+    geom "POINT(3 4)"
+    tags ""
   end
 end
