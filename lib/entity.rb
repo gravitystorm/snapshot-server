@@ -17,7 +17,7 @@ module Entity
     end
 
     def percentage_status_changed
-      if self.count > 0
+      if self.count > 0 && self.with_tags.count > 0
         ((self.with_tags.status_changed.count.to_f / self.with_tags.count) * 100).to_i
       else
         0
