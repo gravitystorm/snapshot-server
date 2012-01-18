@@ -18,6 +18,7 @@ class ProjectWay < ActiveRecord::Base
 
   belongs_to :project
   has_many :way_nodes, :class_name => "ProjectWayNode", :foreign_key => "way_id"
+  has_many :nodes, :through => :way_nodes
 
   validates :osm_id, :presence => true
   validates :version, :presence => true
