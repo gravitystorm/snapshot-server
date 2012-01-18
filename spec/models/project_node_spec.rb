@@ -23,7 +23,7 @@ describe ProjectNode do
     subject { FactoryGirl.create(:project_node) }
 
     it "should have an osm_id" do
-      subject.osm_id.should eql(2)
+      subject.osm_id.should be_an_integer
     end
   end
 
@@ -47,7 +47,7 @@ describe ProjectNode do
 
     it "must return attributes properly" do
       subject.to_xml.should_not be_nil
-      subject.to_xml.to_s.should include(' id="2"')
+      subject.to_xml.to_s.should include(" id=\"#{subject.osm_id}\"")
       subject.to_xml.to_s.should include(' version="4"')
     end
   end
