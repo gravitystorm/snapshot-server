@@ -1,6 +1,6 @@
 %h1= t ".current_projects"
 - if @projects.empty?
-  t ".no_projects"
+  = t ".no_projects"
 - else
   - @projects.each do |p|
     = link_to p.title, p
