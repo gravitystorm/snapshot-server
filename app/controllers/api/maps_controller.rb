@@ -97,7 +97,7 @@ class Api::MapsController < ApplicationController
     way_ids = Array.new
     ways.each do |way|
       #if way.visible?
-        doc.root << way.to_xml_node(visible_nodes, changeset_cache, user_display_name_cache)
+        doc.root << way.to_xml_node()
         way_ids << way.id
       #end
     end
