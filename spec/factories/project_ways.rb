@@ -7,5 +7,13 @@ FactoryGirl.define do
     tstamp Time.now
     changeset_id 5
     tags ""
+
+    trait :with_nodes do
+      after_create do |w|
+        FactoryGirl.create_list(:project_way_node, 10, :way => w)
+      end
+    end
+
+    factory :project_way_with_nodes, :traits => [:with_nodes]
   end
 end
