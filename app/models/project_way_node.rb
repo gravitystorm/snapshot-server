@@ -11,8 +11,8 @@
 
 class ProjectWayNode < ActiveRecord::Base
   belongs_to :project
-  belongs_to :node, :class_name => "ProjectNode"
-  belongs_to :way, :class_name => "ProjectWay"
+  belongs_to :node, :class_name => "ProjectNode", :primary_key => "osm_id"
+  belongs_to :way, :class_name => "ProjectWay", :primary_key => "osm_id"
 
   validates :project_id, :presence => true
   validates :way_id, :presence => true
