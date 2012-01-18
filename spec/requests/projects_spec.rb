@@ -58,6 +58,7 @@ describe "Projects" do
         click_on "New Project"
         fill_in :title, :with => "My First Project"
         click_on "Create Project"
+        page.should have_content("Project created")
         page.should have_content("My First Project")
       end
     end

@@ -17,6 +17,8 @@ en:
     application:
       title: "Snapshot Server"
   projects:
+    create:
+      success: "Project created"
     edit:
       title: "Edit project details"
     update:
