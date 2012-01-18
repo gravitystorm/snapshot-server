@@ -17,7 +17,7 @@ class Project < ActiveRecord::Base
   has_many :relation_members, :class_name => "ProjectRelationMember"
   has_many :way_nodes, :class_name => "ProjectWayNode"
   has_many :ways, :class_name => "ProjectWay"
-  has_many :users, :class_name => "ProjectUsers"
+  has_many :users, :class_name => "ProjectUser"
 
   # This might take a while...
   def transfer
