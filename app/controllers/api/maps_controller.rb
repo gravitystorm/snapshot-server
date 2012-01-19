@@ -90,7 +90,7 @@ class Api::MapsController < ApplicationController
     @nodes.each do |node|
       #if node.visible?
         doc.root << node.to_xml_node()
-        visible_nodes[node.id] = node
+        visible_nodes[node.osm_id] = node
       #end
     end
 
@@ -98,7 +98,7 @@ class Api::MapsController < ApplicationController
     ways.each do |way|
       #if way.visible?
         doc.root << way.to_xml_node()
-        way_ids << way.id
+        way_ids << way.osm_id
       #end
     end
 
