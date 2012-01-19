@@ -14,6 +14,8 @@
 class ProjectRelationMember < ActiveRecord::Base
   belongs_to :project
 
+  belongs_to :relation, :class_name => "ProjectRelation", :primary_key => "osm_id", :conditions => proc {"project_relations.project_id = #{project_id}"}
+
   validates :project_id, :presence => true
   validates :relation_id, :presence => true
   validates :member_id, :presence => true
