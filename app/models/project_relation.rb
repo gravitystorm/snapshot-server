@@ -17,7 +17,7 @@ class ProjectRelation < ActiveRecord::Base
   include Entity
 
   belongs_to :project
-  has_many :relation_members, :class_name => "ProjectRelationMember", :order => 'sequence_id', :foreign_key => "relation_id"
+  has_many :relation_members, :class_name => "ProjectRelationMember", :order => 'sequence_id', :foreign_key => "relation_id", :primary_key => "osm_id", :conditions => proc {"project_relation_members.project_id = #{project_id}"}
   has_many :containing_relation_members, :class_name => "ProjectRelationMember", :as => :member, :foreign_key => "relation_id"
   has_many :containing_relations, :class_name => "ProjectRelation", :through => :containing_relation_members, :source => :relation, :foreign_key => "relation_id"
 
@@ -82,7 +82,7 @@ class ProjectRelation < ActiveRecord::Base
     if ids.empty?
       return []
     else
-      self.with_scope(:find => { :joins => "INNER JOIN project_relation_members AS rm ON rm.relation_id = project_relations.id", :conditions => "rm.member_type = 'N' AND rm.member_id IN (#{ids.join(',')})" }) do
+      self.with_scope(:find => { :joins => "INNER JOIN project_relation_members AS rm ON rm.relation_id = project_relations.osm_id", :conditions => "rm.member_type = 'N' AND rm.member_id IN (#{ids.join(',')})" }) do
         return self.find(:all, options)
       end
     end
@@ -92,7 +92,7 @@ class ProjectRelation < ActiveRecord::Base
     if ids.empty?
       return []
     else
-      self.with_scope(:find => { :joins => "INNER JOIN project_relation_members AS rm ON rm.relation_id = project_relations.id", :conditions => "rm.member_type = 'W' AND rm.member_id IN (#{ids.join(',')})" }) do
+      self.with_scope(:find => { :joins => "INNER JOIN project_relation_members AS rm ON rm.relation_id = project_relations.osm_id", :conditions => "rm.member_type = 'W' AND rm.member_id IN (#{ids.join(',')})" }) do
         return self.find(:all, options)
       end
     end
@@ -102,7 +102,7 @@ class ProjectRelation < ActiveRecord::Base
     if ids.empty?
       return []
     else
-      self.with_scope(:find => { :joins => "INNER JOIN project_relation_members AS rm ON rm.relation_id = project_relations.id", :conditions => "rm.member_type = 'R' AND rm.member_id IN (#{ids.join(',')})" }) do
+      self.with_scope(:find => { :joins => "INNER JOIN project_relation_members AS rm ON rm.relation_id = project_relations.osm_id", :conditions => "rm.member_type = 'R' AND rm.member_id IN (#{ids.join(',')})" }) do
         return self.find(:all, options)
       end
     end
