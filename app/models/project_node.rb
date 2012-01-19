@@ -25,7 +25,7 @@ class ProjectNode < ActiveRecord::Base
   belongs_to :project
   belongs_to :user, :class_name => "ProjectUser"
 
-  has_many :way_nodes, :class_name => "ProjectWayNode", :foreign_key => "node_id", :primary_key => "osm_id"
+  has_many :way_nodes, :class_name => "ProjectWayNode", :foreign_key => "node_id", :primary_key => "osm_id", :conditions => proc {"project_way_nodes.project_id = #{project_id}"}
   has_many :ways, :class_name => "ProjectWay", :through => :way_nodes
 
   validates :project_id, :presence => true

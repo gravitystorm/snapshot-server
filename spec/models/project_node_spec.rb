@@ -51,4 +51,15 @@ describe ProjectNode do
       subject.to_xml.to_s.should include(' version="4"')
     end
   end
+
+  describe "way nodes" do
+    let!(:wn1) { FactoryGirl.create(:project_way_node, :node_id => 222, :project_id => 15) }
+    let!(:wn2) { FactoryGirl.create(:project_way_node, :node_id => 222, :project_id => 25) }
+    let!(:node) { FactoryGirl.create(:project_node, :osm_id => 222, :project_id => 15) }
+
+    it "should only have one way node" do
+      node.way_nodes.count.should eql(1)
+      node.way_nodes.should include(wn1)
+    end
+  end
 end
