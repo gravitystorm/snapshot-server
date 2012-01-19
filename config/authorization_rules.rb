@@ -11,6 +11,7 @@ authorization do
     has_permission_on :projects, :to => :view
     has_permission_on :api_maps, :to => :view
     has_permission_on :api_node, :to => [:view, :status]
+    has_permission_on :api_way, :to => [:view, :status]
   end
 end
 

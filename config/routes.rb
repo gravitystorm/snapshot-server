@@ -9,7 +9,7 @@ SnapshotServer::Application.routes.draw do
     namespace :api do
       resource :map
       resources :way do
-        post 'status'
+        post 'status', :on => :member
       end
       resources :node do
         post 'status', :on => :member
