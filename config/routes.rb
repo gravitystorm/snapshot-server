@@ -12,7 +12,7 @@ SnapshotServer::Application.routes.draw do
         post 'status'
       end
       resources :node do
-        post 'status'
+        post 'status', :on => :member
       end
     end
   end
