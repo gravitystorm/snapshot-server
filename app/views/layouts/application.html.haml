@@ -6,15 +6,30 @@
     = javascript_include_tag "application"
     = csrf_meta_tag
   %body
+    .topbar
+      .fill
+        .container
+          = link_to t(".title"), root_path, :class => :brand
+          %ul.nav
+            %li= link_to t(".all_projects"), projects_path
+            - if current_admin
+              %li= link_to t(".sign_out"), destroy_admin_session_path, method: "delete"
+            - else
+              %li= link_to t(".sign_in"), new_admin_session_path
     .container
-      %h1= link_to t(".title"), root_path
-      - if current_admin
-        %p= link_to t(".sign_out"), destroy_admin_session_path, method: "delete"
-      - else
-        %p= link_to t(".sign_in"), new_admin_session_path
-      .flash-container
-        - [:alert, :notice].each do |type|
-          - if flash.key? type
-            .flash{class: type}
-              = flash[type]
-      = yield
+      .content
+        .flash-container
+          - [:alert, :notice].each do |type|
+            - if flash.key? type
+              .flash{class: type}
+                = flash[type]
+        = yield
+
+    %footer.footer
+      .container
+        %p
+          Documentation is available on the
+          = link_to "OpenStreetmap Wiki", 'http://wiki.openstreetmap.org/wiki/Snapshot_Server'
+        %p
+          Snapshot Server is an open-source project
+          = link_to "available on github", 'https://github.com/gravitystorm/snapshot-server'
