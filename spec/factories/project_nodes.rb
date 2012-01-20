@@ -26,5 +26,9 @@ FactoryGirl.define do
     changeset_id 5
     geom "POINT(3 4)"
     tags ""
+
+    factory :project_node_with_tags do
+      tags {{:highway => "residential"}}
+    end
   end
 end

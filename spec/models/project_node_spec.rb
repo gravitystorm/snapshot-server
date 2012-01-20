@@ -62,4 +62,12 @@ describe ProjectNode do
       node.way_nodes.should include(wn1)
     end
   end
+
+  describe "with tags" do
+    let(:node) { FactoryGirl.create(:project_node_with_tags) }
+
+    it "should have tags" do
+      node.tags.should be_a(Hash)
+    end
+  end
 end

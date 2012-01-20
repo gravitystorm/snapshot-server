@@ -42,7 +42,18 @@ describe "Projects" do
         click_on "Edit project details"
         page.should have_content("You need to sign in or sign up before continuing.")
       end
+    end
 
+    context "nodes" do
+      let!(:project) { FactoryGirl.create(:project) }
+      let!(:node) { FactoryGirl.create(:project_node_with_tags, :project_id => project.id) }
+
+      it "should show you a list of nodes" do
+        project.nodes.count.should eql(1)
+        project.nodes.with_tags.count.should eql(1)
+        visit tagged_nodes_project_path(project)
+        page.should have_content(node.osm_id)
+      end
     end
   end
 
