@@ -2,6 +2,8 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  application:
+    permission_denied: "Permission Denied"
   browse:
     entities:
       id: "ID"
@@ -16,9 +18,17 @@ en:
   layouts:
     application:
       title: "Snapshot Server"
-  site:
-    index:
-      currently_loaded: "In this database, the following data is currently loaded:"
+  projects:
+    create:
+      success: "Project created"
+    edit:
+      title: "Edit project details"
+    update:
+      success: "Project updated"
+    show:
+      edit: "Edit project details"
+      title: "Project '%{name}'"
+      currently_loaded: "In this project, the following data is currently loaded:"
       looking_at_status: "Looking at the status of tagged objects, we can see the following:"
       number_of_nodes:
         zero: "There are no nodes"
