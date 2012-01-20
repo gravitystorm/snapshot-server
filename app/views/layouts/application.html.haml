@@ -13,7 +13,7 @@
           %ul.nav
             %li= link_to t(".all_projects"), projects_path
             - if current_admin
-              %li= link_to t(".sign_out"), destroy_admin_session_path, method: "delete"
+              %li= link_to t(".sign_out"), destroy_admin_session_path, :method => "delete"
             - else
               %li= link_to t(".sign_in"), new_admin_session_path
     .container
@@ -21,7 +21,7 @@
         .flash-container
           - [:alert, :notice].each do |type|
             - if flash.key? type
-              .flash{class: type}
+              .flash{:class => type}
                 = flash[type]
         = yield
 

@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def set_flash_message(type, options = {})
     flash_key = if type == :success then :notice else :alert end
-    options.reverse_merge!(scope: "#{controller_path.gsub('/', '.')}.#{action_name}")
+    options.reverse_merge!(:scope => "#{controller_path.gsub('/', '.')}.#{action_name}")
     flash[flash_key] = I18n.t(type, options)
   end
 
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     if current_admin.nil?
       authenticate_admin!
     else
-      render status: :unauthorized, text: t(".application.permission_denied")
+      render :status => :unauthorized, :text => t(".application.permission_denied")
     end
   end
 end
