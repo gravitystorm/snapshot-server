@@ -1,6 +1,41 @@
-%h1= t ".current_projects"
-- if @projects.empty?
-  = t ".no_projects"
-- else
-  - @projects.each do |p|
-    = link_to p.title, p
+%h1
+  = t ".welcome"
+  %small can I get you a hot beverage?
+
+%p This is a Snapshot server, for use with OpenStreetMap data. It hosts a few projects, each of which contains data that can be used as background layers to help people editing OpenStreetMap.
+
+- if Admin.count == 0
+  %section
+    .page-header
+      %h2
+        Admin account
+        %small It'll make life easier
+    .row
+      .span4
+        %p In order to make this system fully function, you need to create an admin account. An admin account lets you create new projects, change settings and so on.
+      .span12
+        %p Run this on the rails console
+        %pre= "admin = Admin.new\nadmin.email = \"openstreetmap@example.com\"\nadmin.password = \"example123\"\nadmin.save!"
+        %p You can then log in with that email and password.
+
+%section
+  .page-header
+    %h2
+      Current Projects
+      %small this is where the action is
+  .row
+    .span12
+      - if @projects.empty?
+        %p= t ".no_projects"
+      - else
+        %p= "There are currently #{Project.count} projects hosted on this server. The most recently created projects are"
+        %ul
+          - @projects.each do |project|
+            %li= link_to project.title, project
+
+    .span4
+      - if current_admin
+        %p= link_to t(".create_new_project"), new_project_path
+      - else
+        %p To create a new project, you have to log in as an admin.
+      %p= link_to t(".all_projects"), projects_path
