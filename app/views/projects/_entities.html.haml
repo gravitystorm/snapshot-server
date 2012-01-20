@@ -7,7 +7,7 @@
   %tbody
     - entities.each do |entity|
       %tr
-        %td= entity.id
+        %td= entity.osm_id
         %td
           - if entity.status? && (entity.status != default)
             %span{:class => [:label, :success]}
