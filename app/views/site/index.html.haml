@@ -28,7 +28,7 @@
       - if @projects.empty?
         %p= t ".no_projects"
       - else
-        %p= "There are currently #{Project.count} projects hosted on this server. The most recently created projects are"
+        %p= "There are currently #{Project.count} projects hosted on this server. The most recently created projects are:"
         %ul
           - @projects.each do |project|
             %li= link_to project.title, project
