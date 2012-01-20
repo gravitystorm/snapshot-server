@@ -6,6 +6,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @api_endpoint_url = url_for(:controller => :projects, :action => :show, :id => @project.id, :only_path => false) + '/api/'
+    @crossdomain_url = root_url + "crossdomain.xml"
+
     @node_count = @project.nodes.count
     @way_count = @project.ways.count
     @rel_count = @project.relations.count

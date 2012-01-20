@@ -1,22 +1,42 @@
-%h2= t ".title", :name => @project.title
+.page-header
+  %h2= @project.title
 
 .tasks
   = link_to (t ".edit"), edit_project_path(@project)
 
-%p= t ".currently_loaded"
-%ul
-  %li= t ".number_of_nodes", :count => @node_count
-  %li= t ".number_of_ways", :count => @way_count
-  %li= t ".number_of_relations", :count => @rel_count
+.section
+  .page-header
+    %h3
+      Configuration
+      %small nitty gritty details
+  %p This project's api endpoint is
+  %pre= @api_endpoint_url
+  %p So, for example, you can make a map call to
+  %pre= url_for(:controller => "api/maps", :action => :show, :project_id => @project.id, :only_path => false) + '?bbox=min_lon,min_lat,max_lon,max_lat'
+  .page-header
+    %h4 Potlatch2 Vector Backgrounds
+  %p To use this layer in Potlatch 2's vectors.xml, here is the correct layer definition snippet
+  %pre= "<set loaded=\"true\">\n  <name>#{@project.title}</name>\n  <loader>SnapshotLoader</loader>\n  <policyfile>#{@crossdomain_url}</policyfile>\n  <url>#{@api_endpoint_url}</url>\n</set>"
 
-%p= t ".only_tagged"
-%ul
-  %li= link_to (t ".number_of_nodes", :count => @tagged_node_count), tagged_nodes_project_path(@project)
-  %li= link_to (t ".number_of_ways", :count => @tagged_way_count), tagged_ways_project_path(@project)
-  %li= link_to (t ".number_of_relations", :count => @tagged_rel_count), tagged_relations_project_path(@project)
+.section
+  .page-header
+    %h3
+      Statistics
+      %small and more lies
+  %p= t ".currently_loaded"
+  %ul
+    %li= t ".number_of_nodes", :count => @node_count
+    %li= t ".number_of_ways", :count => @way_count
+    %li= t ".number_of_relations", :count => @rel_count
 
-%p= t ".looking_at_status"
-%ul
-  %li= t ".percentage_nodes", :count => @percentage_nodes
-  %li= t ".percentage_ways", :count => @percentage_ways
-  %li= t ".percentage_relations", :count => @percentage_rels
+  %p= t ".only_tagged"
+  %ul
+    %li= link_to (t ".number_of_nodes", :count => @tagged_node_count), tagged_nodes_project_path(@project)
+    %li= link_to (t ".number_of_ways", :count => @tagged_way_count), tagged_ways_project_path(@project)
+    %li= link_to (t ".number_of_relations", :count => @tagged_rel_count), tagged_relations_project_path(@project)
+
+  %p= t ".looking_at_status"
+  %ul
+    %li= t ".percentage_nodes", :count => @percentage_nodes
+    %li= t ".percentage_ways", :count => @percentage_ways
+    %li= t ".percentage_relations", :count => @percentage_rels
