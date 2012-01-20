@@ -6,4 +6,5 @@
  *= require "bootstrap.min"
  *= require "formtastic"
  *= require "formtastic_changes"
+ *= require "layout"
 */
