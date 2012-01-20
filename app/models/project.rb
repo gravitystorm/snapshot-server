@@ -57,4 +57,13 @@ class Project < ActiveRecord::Base
       pu.save!
     end
   end
+
+  def truncate_staging_tables
+    self.connection.execute("truncate table nodes")
+    self.connection.execute("truncate table relations")
+    self.connection.execute("truncate table relation_members")
+    self.connection.execute("truncate table way_nodes")
+    self.connection.execute("truncate table ways")
+    self.connection.execute("truncate table users")
+  end
 end
