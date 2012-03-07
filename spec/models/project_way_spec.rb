@@ -31,4 +31,13 @@ describe ProjectWay do
       end
     end
   end
+
+  describe "way nodes" do
+    it "should not mix up nodes between projects" do
+      way1 = FactoryGirl.create(:project_way_with_nodes, :osm_id => 1234, :project_id => 1 )
+      way2 = FactoryGirl.create(:project_way_with_nodes, :osm_id => 1234, :project_id => 2 )
+
+      way1.nodes.length.should eql(10)
+    end
+  end
 end
