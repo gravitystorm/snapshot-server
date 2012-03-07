@@ -65,7 +65,7 @@ class Api::MapsController < ApplicationController
     if node_ids.length > 0
       way_nodes = @project.way_nodes.find_all_by_node_id(node_ids)
       way_ids = way_nodes.collect { |way_node| way_node.way_id }
-      ways = @project.ways.find_all_by_osm_id(way_ids, :include => [:way_nodes])
+      ways = @project.ways.find_all_by_osm_id(way_ids)
 
       list_of_way_nodes = ways.collect { |way|
         way.way_nodes.collect { |way_node| way_node.node_id }
