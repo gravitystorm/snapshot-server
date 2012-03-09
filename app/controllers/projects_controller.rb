@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :load_project, :except => [:index, :new, :create]
+  before_filter :load_project, :except => [:index, :new, :create, :all_snippets]
 
   def index
     @projects = Project.all
@@ -63,6 +63,11 @@ class ProjectsController < ApplicationController
   def transfer
     @project.transfer
     redirect_to @project
+  end
+
+  def all_snippets
+    @projects = Project.all
+    @crossdomain_url = root_url + "crossdomain.xml"
   end
 
   private
