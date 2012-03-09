@@ -66,4 +66,20 @@ class Project < ActiveRecord::Base
     self.connection.execute("truncate table ways")
     self.connection.execute("truncate table users")
   end
+
+  def min_lat
+    self.nodes.minimum("y(geom)")
+  end
+
+  def min_lon
+    self.nodes.minimum("x(geom)")
+  end
+
+  def max_lat
+    self.nodes.maximum("y(geom)")
+  end
+
+  def max_lon
+    self.nodes.maximum("x(geom)")
+  end
 end

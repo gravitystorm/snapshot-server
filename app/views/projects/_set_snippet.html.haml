@@ -1,2 +1,2 @@
 - api_endpoint_url = url_for(:controller => :projects, :action => :show, :id => project.id, :only_path => false) + '/api/'
-%pre= "<set loaded=\"true\">\n  <name>#{project.title}</name>\n  <loader>SnapshotLoader</loader>\n  <policyfile>#{crossdomain_url}</policyfile>\n  <url>#{api_endpoint_url}</url>\n</set>"
+%pre= "<set loaded=\"true\" minlat=\"#{project.min_lat}\" minlon=\"#{project.min_lon}\" maxlat=\"#{project.max_lat}\" maxlon=\"#{project.max_lon}\">\n  <name>#{project.title}</name>\n  <loader>SnapshotLoader</loader>\n  <policyfile>#{crossdomain_url}</policyfile>\n  <url>#{api_endpoint_url}</url>\n</set>"
