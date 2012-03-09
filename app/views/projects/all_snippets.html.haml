@@ -1,2 +1,9 @@
 - @projects.each do |project|
   = render "set_snippet", :project => project, :crossdomain_url => @crossdomain_url
+
+%h2 List of links
+%p This is a pure bodge, nothing more, and should be removed at some point.
+
+%ul
+  - @projects.each do |project|
+    %li= "<li><a href=\"editor.html?lat=#{project.avg_lat}&amp;lon=#{project.avg_lon}\">#{project.title.split("-")[0].strip}</a></li>"
