@@ -49,12 +49,12 @@ At present, loading data is in two stages. First we use osmosis to load the data
 osmosis --read-xml --write-pgsql
 ```
 
-After the data is loaded, you need to create a new project, and import the data from the staging tables into the main tables.
+After the data is loaded, you need to create a new project, and transfer the data from the staging tables into the main tables.
 
 ```
 rails console
-project = Project.find(:last)
-project.import
+project = Project.last
+project.transfer
 ```
 
 This can take a minute or two, depending on the size of your dataset. You can clear out the staging tables with `project.truncate_staging_tables`.
