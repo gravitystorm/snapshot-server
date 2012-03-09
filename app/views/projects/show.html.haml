@@ -16,7 +16,7 @@
   .page-header
     %h4 Potlatch2 Vector Backgrounds
   %p To use this layer in Potlatch 2's vectors.xml, here is the correct layer definition snippet
-  %pre= "<set loaded=\"true\">\n  <name>#{@project.title}</name>\n  <loader>SnapshotLoader</loader>\n  <policyfile>#{@crossdomain_url}</policyfile>\n  <url>#{@api_endpoint_url}</url>\n</set>"
+  = render "set_snippet", :project => @project, :crossdomain_url => @crossdomain_url
 
 .section
   .page-header
