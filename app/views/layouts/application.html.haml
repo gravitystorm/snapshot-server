@@ -6,8 +6,8 @@
     = javascript_include_tag "application"
     = csrf_meta_tag
   %body
-    .topbar
-      .fill
+    .navbar.navbar-fixed-top
+      .navbar-inner
         .container
           = link_to t(".title"), root_path, :class => :brand
           %ul.nav
@@ -25,8 +25,7 @@
                 = flash[type]
         = yield
 
-    %footer.footer
-      .container
+      %footer.footer
         %p
           Documentation is available on the
           = link_to "OpenStreetmap Wiki", 'http://wiki.openstreetmap.org/wiki/Snapshot_Server'
