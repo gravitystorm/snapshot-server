@@ -2,6 +2,9 @@
 :javascript
   var map = new OpenLayers.Map('map', {projection : new OpenLayers.Projection("EPSG:900913"),displayProjection : new OpenLayers.Projection("EPSG:4326")});
   map.addLayer(new OpenLayers.Layer.OSM("OpenStreetMap"));
+  map.addLayer(new OpenLayers.Layer.OSM("OpenCycleMap", ["http://a.tile.opencyclemap.org/cycle/${z}/${x}/${y}.png",
+  "http://b.tile.opencyclemap.org/cycle/${z}/${x}/${y}.png",
+  "http://c.tile.opencyclemap.org/cycle/${z}/${x}/${y}.png"]));
   map.addControl(new OpenLayers.Control.LayerSwitcher());
   map.addControl(new OpenLayers.Control.MousePosition());
   vectors = new OpenLayers.Layer.Vector("Vectors", {projection : new OpenLayers.Projection("EPSG:4326"), styleMap : MapStyle.displayStyle()});
