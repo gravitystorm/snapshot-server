@@ -34,7 +34,4 @@ class Node < ActiveRecord::Base
   def validate_position
     errors.add_to_base("Node is not in the world") unless in_world?
   end
-
-
-
 end
