@@ -49,15 +49,15 @@ class ProjectsController < ApplicationController
   end
 
   def tagged_nodes
-    @nodes = @project.nodes.with_tags.page(params[:page])
+    @nodes = @project.nodes.with_tags.ordered.page(params[:page])
   end
 
   def tagged_ways
-    @ways = @project.ways.with_tags.page(params[:page])
+    @ways = @project.ways.with_tags.ordered.page(params[:page])
   end
 
   def tagged_relations
-    @relations = @project.relations.with_tags.page(params[:page])
+    @relations = @project.relations.with_tags.ordered.page(params[:page])
   end
 
   def transfer
