@@ -112,4 +112,9 @@ class ProjectWay < ActiveRecord::Base
     lats = nodes.collect { |n| n.latitude }
     [ lons.min, lats.min, lons.max, lats.max ]
   end
+
+  def geom
+    factory = RGeo::Cartesian.preferred_factory
+    factory.line_string(nodes.map{|n| n.geom})
+  end
 end
