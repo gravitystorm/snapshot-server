@@ -36,7 +36,23 @@
     %li= link_to (t ".number_of_relations", :count => @tagged_rel_count), tagged_relations_project_path(@project)
 
   %p= t ".looking_at_status"
-  %ul
-    %li= t ".percentage_nodes", :count => @percentage_nodes
-    %li= t ".percentage_ways", :count => @percentage_ways
-    %li= t ".percentage_relations", :count => @percentage_rels
+  .row
+    .span6
+      .progress.progress-striped.progress-success
+        .bar{:style => "width: #{@percentage_nodes}%"}
+    .span6
+      %p= t ".percentage_nodes", :count => @percentage_nodes
+
+  .row
+    .span6
+      .progress.progress-striped.progress-success
+        .bar{:style => "width: #{@percentage_ways}%"}
+    .span6
+      %p= t ".percentage_ways", :count => @percentage_ways
+
+  .row
+    .span6
+      .progress.progress-striped.progress-success
+        .bar{:style => "width: #{@percentage_rels}%"}
+    .span6
+      %p= t ".percentage_relations", :count => @percentage_rels
