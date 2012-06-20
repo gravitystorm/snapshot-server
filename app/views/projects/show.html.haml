@@ -7,20 +7,6 @@
 .section
   .page-header
     %h3
-      Configuration
-      %small nitty gritty details
-  %p This project's api endpoint is
-  %pre= @api_endpoint_url
-  %p So, for example, you can make a map call to
-  %pre= url_for(:controller => "api/maps", :action => :show, :project_id => @project.id, :only_path => false) + '?bbox=min_lon,min_lat,max_lon,max_lat'
-  .page-header
-    %h4 Potlatch2 Vector Backgrounds
-  %p To use this layer in Potlatch 2's vectors.xml, here is the correct layer definition snippet
-  = render "set_snippet", :project => @project, :crossdomain_url => @crossdomain_url
-
-.section
-  .page-header
-    %h3
       Statistics
       %small and more lies
   %p= t ".currently_loaded"
@@ -56,3 +42,17 @@
         .bar{:style => "width: #{@percentage_rels}%"}
     .span6
       %p= t ".percentage_relations", :count => @percentage_rels
+
+.section
+  .page-header
+    %h3
+      Configuration
+      %small nitty gritty details
+  %p This project's api endpoint is
+  %pre= @api_endpoint_url
+  %p So, for example, you can make a map call to
+  %pre= url_for(:controller => "api/maps", :action => :show, :project_id => @project.id, :only_path => false) + '?bbox=min_lon,min_lat,max_lon,max_lat'
+  .page-header
+    %h4 Potlatch2 Vector Backgrounds
+  %p To use this layer in Potlatch 2's vectors.xml, here is the correct layer definition snippet
+  = render "set_snippet", :project => @project, :crossdomain_url => @crossdomain_url
