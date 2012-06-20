@@ -1,0 +1,12 @@
+#map
+:javascript
+  var map = new OpenLayers.Map('map', {projection : new OpenLayers.Projection("EPSG:900913"),displayProjection : new OpenLayers.Projection("EPSG:4326")});
+  map.addLayer(new OpenLayers.Layer.OSM("OpenStreetMap"));
+  map.addControl(new OpenLayers.Control.LayerSwitcher());
+  map.addControl(new OpenLayers.Control.MousePosition());
+  vectors = new OpenLayers.Layer.Vector("Vectors", {projection : new OpenLayers.Projection("EPSG:4326")});
+  var format = new OpenLayers.Format.GeoJSON({internalProjection : new OpenLayers.Projection("EPSG:900913"),externalProjection : new OpenLayers.Projection("EPSG:4326")});
+  var format_plain = new OpenLayers.Format.GeoJSON();
+  vectors.addFeatures(format.read(#{entity.feature_geojson}));
+  map.addLayer(vectors);
+  map.zoomToExtent(vectors.getDataExtent());

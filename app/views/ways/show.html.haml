@@ -1,0 +1,14 @@
+%h2= t ".title", :id => @way.osm_id
+
+.row
+  .span6
+    %h4= t ".tags"
+    %dl.dl-horizontal
+      - @way.ordered_tags.each do |k,v|
+        %dt= k
+        %dd= v
+  .span6
+    %h4= t ".status"
+    = status_label(@way)
+
+= render "shared/entity_map", :entity => @way
