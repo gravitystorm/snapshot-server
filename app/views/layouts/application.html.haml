@@ -20,7 +20,7 @@
     .container
       .content
         .flash-container
-          - {alert: "alert-error", notice: "alert-success"}.each do |type, klass|
+          - {:alert => "alert-error", :notice => "alert-success"}.each do |type, klass|
             - if flash.key? type
               .alert{:class => klass}
                 %p= flash[type]
