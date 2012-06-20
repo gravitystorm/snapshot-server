@@ -32,4 +32,8 @@ module Entity
   def tags_string
     tags.map {|k,v| "#{k}=#{v}"}.join(", ")
   end
+
+  def feature_geojson
+    RGeo::GeoJSON.encode(geom).to_json
+  end
 end
