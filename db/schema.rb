@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117181643) do
+ActiveRecord::Schema.define(:version => 20120620135238) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(:version => 20120117181643) do
     t.text     "status"
   end
 
+  add_index "project_nodes", ["osm_id"], :name => "index_project_nodes_on_osm_id"
+  add_index "project_nodes", ["project_id"], :name => "index_project_nodes_on_project_id"
+
   create_table "project_relation_members", :force => true do |t|
     t.integer "project_id",               :null => false
     t.integer "relation_id", :limit => 8, :null => false
@@ -77,6 +80,9 @@ ActiveRecord::Schema.define(:version => 20120117181643) do
     t.text     "status"
   end
 
+  add_index "project_relations", ["osm_id"], :name => "index_project_relations_on_osm_id"
+  add_index "project_relations", ["project_id"], :name => "index_project_relations_on_project_id"
+
   create_table "project_users", :force => true do |t|
     t.integer "project_id", :null => false
     t.integer "osm_id",     :null => false
@@ -90,6 +96,10 @@ ActiveRecord::Schema.define(:version => 20120117181643) do
     t.integer "sequence_id",              :null => false
   end
 
+  add_index "project_way_nodes", ["node_id"], :name => "index_project_way_nodes_on_node_id"
+  add_index "project_way_nodes", ["project_id"], :name => "index_project_way_nodes_on_project_id"
+  add_index "project_way_nodes", ["way_id"], :name => "index_project_way_nodes_on_way_id"
+
   create_table "project_ways", :force => true do |t|
     t.integer  "project_id",                :null => false
     t.integer  "osm_id",       :limit => 8
@@ -100,6 +110,9 @@ ActiveRecord::Schema.define(:version => 20120117181643) do
     t.hstore   "tags"
     t.text     "status"
   end
+
+  add_index "project_ways", ["osm_id"], :name => "index_project_ways_on_osm_id"
+  add_index "project_ways", ["project_id"], :name => "index_project_ways_on_project_id"
 
   create_table "projects", :force => true do |t|
     t.string   "title"
