@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'formtastic'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'rgeo-geojson'
 
 gem 'devise'
 gem 'declarative_authorization'
