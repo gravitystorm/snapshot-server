@@ -18,7 +18,7 @@ class ProjectWay < ActiveRecord::Base
 
   belongs_to :project
   has_many :way_nodes, :class_name => "ProjectWayNode", :foreign_key => "way_id", :primary_key => "osm_id", :order => 'sequence_id', :conditions => proc {"project_way_nodes.project_id = #{project_id}"}
-  has_many :nodes, :through => :way_nodes, :order => 'sequence_id'
+  has_many :nodes, :through => :way_nodes, :order => 'project_way_nodes.sequence_id'
   has_many :containing_relation_members, :class_name => "ProjectRelationMember", :as => :member
   has_many :containing_relations, :class_name => "ProjectRelation", :through => :containing_relation_members, :source => :relation
 
