@@ -18,6 +18,11 @@ en:
   layouts:
     application:
       title: "Snapshot Server"
+  nodes:
+    show:
+      title: "Details for node %{id}"
+      tags: "Tags"
+      status: "Status"
   projects:
     create:
       success: "Project created"
@@ -46,6 +51,11 @@ en:
       percentage_nodes: "%{count}% of tagged nodes have been assessed"
       percentage_relations: "%{count}% of tagged relations have been assessed"
       percentage_ways: "%{count}% of tagged ways have been assessed"
+  relations:
+    show:
+      title: "Details for relation %{id}"
+      tags: "Tags"
+      status: "Status"
   ways:
     show:
       title: "Details for way %{id}"
