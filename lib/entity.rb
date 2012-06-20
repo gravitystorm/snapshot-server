@@ -33,6 +33,10 @@ module Entity
     tags.map {|k,v| "#{k}=#{v}"}.join(", ")
   end
 
+  def ordered_tags
+    tags.sort_by{ |k,v| k }
+  end
+
   def feature_geojson
     RGeo::GeoJSON.encode(geom).to_json
   end
