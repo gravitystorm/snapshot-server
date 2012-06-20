@@ -12,6 +12,9 @@ authorization do
     has_permission_on :api_maps, :to => :view
     has_permission_on :api_node, :to => [:view, :status]
     has_permission_on :api_way, :to => [:view, :status]
+    has_permission_on :nodes, :to => [:view]
+    has_permission_on :ways, :to => [:view]
+    has_permission_on :relations, :to => [:view]
   end
 end
 
