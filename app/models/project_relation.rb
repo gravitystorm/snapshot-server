@@ -107,4 +107,15 @@ class ProjectRelation < ActiveRecord::Base
       end
     end
   end
+
+  def geom
+    factory = RGeo::Cartesian.preferred_factory
+    nodes = ProjectNode.find_by_osm_id(relation_members.where(:member_type => "N").map{|rm| rm.member_id})
+    ways = ProjectWay.find_by_osm_id(relation_members.where(:member_type => "W").map{|rm| rm.member_id})
+    relations = ProjectRelation.find_by_osm_id(relation_members.where(:member_type => "W").map{|rm| rm.member_id})
+
+    entities = [nodes, ways, relations].flatten.compact
+
+    factory.collection(entities.map{|n| n.geom})
+  end
 end
