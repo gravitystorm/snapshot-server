@@ -1,0 +1,14 @@
+%h2= t ".title", :id => @relation.osm_id
+
+.row
+  .span6
+    %h4= t ".tags"
+    %dl.dl-horizontal
+      - @relation.ordered_tags.each do |k,v|
+        %dt= k
+        %dd= v
+  .span6
+    %h4= t ".status"
+    = status_label(@relation)
+
+= render "shared/entity_map", :entity => @relation
