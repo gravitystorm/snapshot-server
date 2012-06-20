@@ -1,0 +1,18 @@
+%table.condensed-table
+  %thead
+    %tr
+      %th= t ".id"
+      %th= t ".status"
+      %th= t ".tags"
+  %tbody
+    - entities.each do |entity|
+      %tr
+        %td= link_to entity.osm_id, project_node_path(entity.project, entity)
+        %td
+          - if entity.status? && (entity.status != default)
+            %span{:class => [:label, :success]}
+              = entity.status
+          - else
+            %span{:class => [:label]}
+              = default
+        %td= entity.tags_string

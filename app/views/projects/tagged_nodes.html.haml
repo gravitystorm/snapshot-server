@@ -1,5 +1,5 @@
 %h2= t ".title"
 
-= render "entities", :entities => @nodes, :default => NODE_STATUS_DEFAULT
+= render "nodes", :entities => @nodes, :default => NODE_STATUS_DEFAULT
 
 = will_paginate @nodes
