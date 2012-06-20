@@ -9,10 +9,5 @@
       %tr
         %td= entity.osm_id
         %td
-          - if entity.status? && (entity.status != default)
-            %span{:class => [:label, :success]}
-              = entity.status
-          - else
-            %span{:class => [:label]}
-              = default
+          = status_label(entity)
         %td= entity.tags_string

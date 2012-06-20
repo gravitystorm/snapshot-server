@@ -9,10 +9,5 @@
       %tr
         %td= link_to entity.osm_id, project_way_path(entity.project, entity)
         %td
-          - if entity.status? && (entity.status != default)
-            %span{:class => [:label, :success]}
-              = entity.status
-          - else
-            %span{:class => [:label]}
-              = default
+          = status_label(entity)
         %td= entity.tags_string
