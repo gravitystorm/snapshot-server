@@ -27,7 +27,7 @@ bundle install
 Then sort out the database
 
 ```
-cp config/example.database.yml config/database.yml
+cp config/database.yml.example config/database.yml
 nano config/database.yml # Put your username and password in here, and pick names for the databases
 rake db:create
 rake db:migrate
