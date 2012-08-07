@@ -13,7 +13,7 @@ This is a rails application, so lots of things will seem familar if you're famil
 First, grab the code
 
 ```
-git fetch https://github.com/gravitystorm/snapshot-server.git
+git clone https://github.com/gravitystorm/snapshot-server.git
 ```
 
 Then install the gem dependencies. You'll need ruby and postgis installed, and development headers for postgres and imagemagick.
