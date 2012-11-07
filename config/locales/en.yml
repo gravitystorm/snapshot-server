@@ -57,6 +57,9 @@ en:
       title: "Details for relation %{id}"
       tags: "Tags"
       status: "Status"
+  site:
+    index:
+      more: "More\u2026"
   ways:
     show:
       title: "Details for way %{id}"
