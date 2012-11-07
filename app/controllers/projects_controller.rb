@@ -76,7 +76,7 @@ class ProjectsController < ApplicationController
 
   def unprocessed
     if params[:bbox]
-      bbox = bbox_from_string(params[:bbox], RGeo::Geos.factory(srid: 4326))
+      bbox = bbox_from_string(params[:bbox], RGeo::Cartesian.preferred_factory)
       # There's something flakey in here, I think, since the returned list of linestrings isn't quite what
       # I'd expect. Nodes seem to work fine though.
       ways = @project.ways.
