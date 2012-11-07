@@ -18,4 +18,17 @@ module ApplicationHelper
       end
     end
   end
+
+  def progress_bar(percent, label)
+    content_tag("div", :class => 'row') do
+      content_tag("div", :class => 'span6') do
+        content_tag("div", :class => ['progress', 'progress-striped', 'progress-success']) do
+          content_tag("div", nil, :class => 'bar', :style => "width: #{percent}%")
+        end
+      end +
+      content_tag("div", :class => 'span6') do
+        content_tag("p", label)
+      end
+    end
+  end
 end
