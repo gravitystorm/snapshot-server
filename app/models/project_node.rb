@@ -100,7 +100,7 @@ class ProjectNode < ActiveRecord::Base
   end
 
   def self.find_by_area(min_lat, min_lon, max_lat, max_lon, options)
-    self.with_scope(:find => {:conditions => ["ST_INTERSECTS(geom, setSrid(box3d('BOX3D(? ?, ? ?)'),4326))", min_lon, min_lat, max_lon, max_lat]}) do
+    self.with_scope(:find => {:conditions => ["st_intersects(geom, st_setsrid(box3d('BOX3D(? ?, ? ?)'),4326))", min_lon, min_lat, max_lon, max_lat]}) do
       return self.find(:all, options)
     end
   end

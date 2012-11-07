@@ -68,26 +68,26 @@ class Project < ActiveRecord::Base
   end
 
   def min_lat
-    self.nodes.minimum("y(geom)").to_f
+    self.nodes.minimum("st_y(geom)").to_f
   end
 
   def min_lon
-    self.nodes.minimum("x(geom)").to_f
+    self.nodes.minimum("st_x(geom)").to_f
   end
 
   def max_lat
-    self.nodes.maximum("y(geom)").to_f
+    self.nodes.maximum("st_y(geom)").to_f
   end
 
   def max_lon
-    self.nodes.maximum("x(geom)").to_f
+    self.nodes.maximum("st_x(geom)").to_f
   end
 
   def avg_lat
-    self.nodes.average("y(geom)").to_f
+    self.nodes.average("st_y(geom)").to_f
   end
 
   def avg_lon
-    self.nodes.average("x(geom)").to_f
+    self.nodes.average("st_x(geom)").to_f
   end
 end
