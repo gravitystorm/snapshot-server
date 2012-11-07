@@ -1,9 +1,3 @@
-GIT
-  remote: git://github.com/ctran/annotate_models.git
-  revision: 032565653b98e0790ddd8a070579566eb60a850c
-  specs:
-    annotate (2.4.1.beta1)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -42,6 +36,8 @@ GEM
     activesupport (3.1.3)
       multi_json (~> 1.0)
     addressable (2.2.6)
+    annotate (2.5.0)
+      rake
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
     bootstrap-will_paginate (0.0.3)
@@ -180,7 +176,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgis-adapter
   activerecord-postgres-hstore
-  annotate!
+  annotate (>= 2.5.0)
   bootstrap-will_paginate
   capybara
   database_cleaner

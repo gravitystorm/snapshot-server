@@ -20,7 +20,7 @@ gem 'declarative_authorization'
 gem 'jquery-rails'
 
 group :development do
-  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git', :require => false
+  gem 'annotate', '>= 2.5.0', :require => false
 end
 
 group :development, :test do
