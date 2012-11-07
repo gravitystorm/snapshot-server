@@ -59,7 +59,20 @@ en:
       status: "Status"
   site:
     index:
+      admin_account: "Admin account"
+      admin_explanation: "In order to make this system fully function, you need to create an admin account. An admin account lets you create new projects, change settings and so on."
+      currently_hosted: "There are currently %{count} projects hosted on this server. The most recently created projects are:"
+      current_projects: "Current Projects"
+      introduction: "This is a Snapshot server, for use with OpenStreetMap data. It hosts a few projects, each of which contains data that can be used as background layers to help people editing OpenStreetMap."
+      launch_rails_console: "Launch the rails console by running"
+      make_life_easier: "It'll make life easier"
       more: "More\u2026"
+      run_these_commands: "Then run these commands (but pick your own password!)"
+      slogan: "can I get you a hot beverage?"
+      to_create_new_project: "To create a new project, you have to log in as an admin."
+      then_log_in: "You can then log in with that email and password."
+      welcome: "Welcome"
+      where_the_action: "this is where the action is"
   ways:
     show:
       title: "Details for way %{id}"
