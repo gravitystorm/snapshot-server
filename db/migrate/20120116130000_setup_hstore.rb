@@ -1,6 +1,6 @@
 class SetupHstore < ActiveRecord::Migration
   def self.up
-    execute "CREATE EXTENSION hstore"
+    execute "CREATE EXTENSION IF NOT EXISTS hstore"
   end
 
   def self.down
