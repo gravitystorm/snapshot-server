@@ -21,7 +21,7 @@ FactoryGirl.define do
     version 4
     tstamp Time.now
     changeset_id 5
-    tags ""
+    tags Hash.new
 
     trait :with_members do
       after_create do |r|
