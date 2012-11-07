@@ -1,0 +1,18 @@
+%h1= t ".unprocessed_entities"
+
+#map
+:javascript
+  var map = new OpenLayers.Map('map', {projection : new OpenLayers.Projection("EPSG:900913"),displayProjection : new OpenLayers.Projection("EPSG:4326")});
+  map.addLayer(new OpenLayers.Layer.OSM("OpenStreetMap"));
+  map.addLayer(new OpenLayers.Layer.OSM("OpenCycleMap", ["http://a.tile.opencyclemap.org/cycle/${z}/${x}/${y}.png",
+  "http://b.tile.opencyclemap.org/cycle/${z}/${x}/${y}.png",
+  "http://c.tile.opencyclemap.org/cycle/${z}/${x}/${y}.png"]));
+  map.addControl(new OpenLayers.Control.LayerSwitcher());
+  map.addControl(new OpenLayers.Control.MousePosition());
+  map.zoomToExtent(new OpenLayers.Bounds(#{@bounds}).transform(new OpenLayers.Projection("EPSG:4326"),map.getProjectionObject()));
+  var format = new OpenLayers.Format.GeoJSON({internalProjection : new OpenLayers.Projection("EPSG:900913"),externalProjection : new OpenLayers.Projection("EPSG:4326")});
+  var format_plain = new OpenLayers.Format.GeoJSON();
+  var protocol = new OpenLayers.Protocol.HTTP({ url: '#{unprocessed_project_path(@project, :json)}', format: format_plain })
+  var strategy = new OpenLayers.Strategy.BBOX({resFactor: 3, ratio: 1.5})
+  vectors = new OpenLayers.Layer.Vector("Vectors", {projection : new OpenLayers.Projection("EPSG:4326"), protocol: protocol, strategies: [strategy], styleMap : MapStyle.displayStyle()});
+  map.addLayer(vectors);

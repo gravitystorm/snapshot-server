@@ -32,6 +32,8 @@
     = progress_bar(@percentage_rels, t(".percentage_relations", :count => @percentage_rels))
 
   = progress_bar(@project.tagged_completion, t(".percentage_overall", :count => @project.tagged_completion))
+
+  %p= link_to t(".view_map"), map_project_path
 .section
   .page-header
     %h3
