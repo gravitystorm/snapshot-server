@@ -24,7 +24,7 @@ FactoryGirl.define do
     tags Hash.new
 
     trait :with_members do
-      after_create do |r|
+      after(:create) do |r|
         FactoryGirl.create(:project_relation_member, :relation => r)
         w = FactoryGirl.create(:project_way_with_nodes)
         FactoryGirl.create(:project_relation_member, :relation => r, :member_id => w.osm_id, :member_type => 'W', :member_role => "a long way away")
