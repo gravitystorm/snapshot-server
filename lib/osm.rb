@@ -6,7 +6,6 @@ module OSM
   require 'rexml/text'
   require 'xml/libxml'
   require 'digest/md5'
-  require 'RMagick'
 
   # The base class for API Errors.
   class APIError < RuntimeError
