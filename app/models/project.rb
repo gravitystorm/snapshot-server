@@ -19,6 +19,12 @@ class Project < ActiveRecord::Base
   has_many :ways, :class_name => "ProjectWay"
   has_many :users, :class_name => "ProjectUser"
 
+  def tagged_completion
+    entities = self.nodes.with_tags.count + self.ways.with_tags.count + self.relations.with_tags.count
+    changes = self.nodes.with_tags.status_changed.count + self.ways.with_tags.status_changed.count + self.relations.with_tags.status_changed.count
+    entities > 0 ? ((changes.to_f / entities) * 100).to_i : 0
+  end
+
   # This might take a while...
   def transfer
     Node.all.each do |node|

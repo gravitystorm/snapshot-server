@@ -48,6 +48,7 @@ en:
         one: "There is only one way"
         other: "There are %{count} ways"
       only_tagged: "However, considering only entities that actually have tags on them, there are:"
+      percentage_overall: "%{count}% overall completion"
       percentage_nodes: "%{count}% of tagged nodes have been assessed"
       percentage_relations: "%{count}% of tagged relations have been assessed"
       percentage_ways: "%{count}% of tagged ways have been assessed"
