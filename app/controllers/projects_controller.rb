@@ -71,18 +71,24 @@ class ProjectsController < ApplicationController
   end
 
   def map
+    @bounds = [@project.min_lon, @project.min_lat, @project.max_lon, @project.max_lat].join(",")
+  end
+
+  def unprocessed
     if params[:bbox]
-      bbox = bbox_from_string(params[:bbox], ProjectWay.rgeo_factory)
-      ways = @project.ways.status_unchanged.intersects(bbox.to_geometry).limit(100)
-      nodes = @project.nodes.status_unchanged.intersects(bbox.to_geometry).limit(100)
+      bbox = bbox_from_string(params[:bbox], RGeo::Geos.factory(srid: 4326))
+      ways = [] #@project.ways.status_unchanged.intersects(bbox.to_geometry).limit(100)
+      nodes = @project.nodes.with_tags.status_unchanged.intersects(bbox.to_geometry).limit(100)
     else
-      ways = @project.ways.status_unchanged.limit(100)
-      nodes = @project.nodes.status_unchanged.limit(100)
+      ways = @project.ways.with_tags.status_unchanged.limit(100)
+      nodes = @project.nodes.with_tags.status_unchanged.limit(100)
     end
     entities = [nodes, ways].flatten
     factory = RGeo::GeoJSON::EntityFactory.new
     collection = factory.feature_collection(entities.map { | entity | entity_feature(entity) })
-    @geojson = RGeo::GeoJSON.encode(collection).to_json
+    respond_to do |format|
+      format.json { render json: RGeo::GeoJSON.encode(collection)}
+    end
   end
 
   private

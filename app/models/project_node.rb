@@ -104,4 +104,8 @@ class ProjectNode < ActiveRecord::Base
       return self.find(:all, options)
     end
   end
+
+  def self.intersects(l)
+    where("st_intersects(geom, ?)", [l])
+  end
 end
