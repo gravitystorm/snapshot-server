@@ -2,6 +2,7 @@ module Entity
   def self.included(base)
     base.instance_eval do
       belongs_to :user
+      serialize :tags, ActiveRecord::Coders::Hstore
       base.extend(ClassMethods)
     end
   end
