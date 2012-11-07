@@ -77,7 +77,10 @@ class ProjectsController < ApplicationController
   def unprocessed
     if params[:bbox]
       bbox = bbox_from_string(params[:bbox], RGeo::Geos.factory(srid: 4326))
-      ways = [] #@project.ways.status_unchanged.intersects(bbox.to_geometry).limit(100)
+      # There's something flakey in here, I think, since the returned list of linestrings isn't quite what
+      # I'd expect. Nodes seem to work fine though.
+      ways = @project.ways.where("project_ways.status is null or project_ways.status = ?", ProjectWay.default_status). # status becomes ambiguous with the intersects
+                intersects(bbox.to_geometry).limit(100)
       nodes = @project.nodes.with_tags.status_unchanged.intersects(bbox.to_geometry).limit(100)
     else
       ways = @project.ways.with_tags.status_unchanged.limit(100)
