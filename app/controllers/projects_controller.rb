@@ -70,9 +70,28 @@ class ProjectsController < ApplicationController
     @crossdomain_url = root_url + "crossdomain.xml"
   end
 
+  def map
+    if params[:bbox]
+      bbox = bbox_from_string(params[:bbox], ProjectWay.rgeo_factory)
+      ways = @project.ways.status_unchanged.intersects(bbox.to_geometry).limit(100)
+      nodes = @project.nodes.status_unchanged.intersects(bbox.to_geometry).limit(100)
+    else
+      ways = @project.ways.status_unchanged.limit(100)
+      nodes = @project.nodes.status_unchanged.limit(100)
+    end
+    entities = [nodes, ways].flatten
+    factory = RGeo::GeoJSON::EntityFactory.new
+    collection = factory.feature_collection(entities.map { | entity | entity_feature(entity) })
+    @geojson = RGeo::GeoJSON.encode(collection).to_json
+  end
+
   private
 
   def load_project
     @project = Project.find(params[:id])
+  end
+
+  def entity_feature(e)
+    e.loc_feature({url: view_context.url_for(e)})
   end
 end

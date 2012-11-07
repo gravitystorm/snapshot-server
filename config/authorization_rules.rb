@@ -8,7 +8,7 @@ authorization do
     has_permission_on :devise_sessions, :devise_registrations, :devise_confirmations,
                       :devise_invitations, :devise_passwords, :to => :manage
     has_permission_on :site, :to => :index
-    has_permission_on :projects, :to => [:view, :all_snippets, :tagged_nodes, :tagged_ways, :tagged_relations]
+    has_permission_on :projects, :to => [:view, :all_snippets, :tagged_nodes, :tagged_ways, :tagged_relations, :map]
     has_permission_on :api_maps, :to => :view
     has_permission_on :api_node, :to => [:view, :status]
     has_permission_on :api_way, :to => [:view, :status]
