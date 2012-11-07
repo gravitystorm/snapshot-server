@@ -122,7 +122,7 @@ class ProjectWay < ActiveRecord::Base
   def self.intersects(l)
     joins("left join project_way_nodes wn on project_ways.osm_id = wn.way_id and project_ways.project_id = wn.project_id").
       joins("left join project_nodes n on wn.node_id = n.osm_id and wn.project_id = n.project_id").
-      having("st_intersects(st_makeline(n.geom), ?)", l).
+      having("st_intersects(st_makeline(n.geom), ?::geometry)", l).
       group("project_ways.id")
   end
 end

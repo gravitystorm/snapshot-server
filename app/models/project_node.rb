@@ -106,6 +106,6 @@ class ProjectNode < ActiveRecord::Base
   end
 
   def self.intersects(l)
-    where("st_intersects(geom, ?)", [l])
+    where("st_intersects(geom, ?::geometry)", [l])
   end
 end
