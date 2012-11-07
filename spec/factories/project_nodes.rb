@@ -25,7 +25,7 @@ FactoryGirl.define do
     tstamp Time.now
     changeset_id 5
     geom "POINT(3 4)"
-    tags ""
+    tags Hash.new
 
     factory :project_node_with_tags do
       tags {{:highway => "residential"}}

@@ -21,10 +21,10 @@ FactoryGirl.define do
     version 4
     tstamp Time.now
     changeset_id 5
-    tags ""
+    tags Hash.new
 
     trait :with_nodes do
-      after_create do |w|
+      after(:create) do |w|
         FactoryGirl.create_list(:project_way_node, 10, :way => w, :project_id => w.project_id)
       end
     end
