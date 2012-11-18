@@ -29,8 +29,18 @@ Then sort out the database
 ```
 cp config/database.yml.example config/database.yml
 nano config/database.yml # Put your username and password in here, and pick names for the databases
-rake db:create
-rake db:migrate
+```
+Create both databases with either ```createdb``` or ```rake db:create```
+
+Install PostGIS and hstore to the -dev database. For postgresql 9.1 with postgis 2.0
+
+```
+psql -d snapshot-dev -c "CREATE EXTENSION hstore; CREATE EXTENSION postgis;"
+```
+
+Load the schema
+```
+rake db:schema:load
 ```
 
 Launch a webserver
@@ -46,8 +56,10 @@ rails server
 At present, loading data is in two stages. First we use osmosis to load the data into the staging tables.
 
 ```
+psql -d snapshot-dev -f pgsnapshot_schema_0.6.sql
 osmosis --read-xml --write-pgsql
 ```
+
 
 After the data is loaded, you need to create a new project, and transfer the data from the staging tables into the main tables.
 
@@ -57,4 +69,4 @@ project = Project.last
 project.transfer
 ```
 
-This can take a minute or two, depending on the size of your dataset. You can clear out the staging tables with `project.truncate_staging_tables`.
+This can take an hour or two, depending on the size of your dataset. You can clear out the staging tables with `project.truncate_staging_tables`.
