@@ -21,6 +21,7 @@ gem 'jquery-rails'
 
 group :development do
   gem 'annotate', '>= 2.5.0', :require => false
+  gem 'bullet'
 end
 
 group :development, :test do
