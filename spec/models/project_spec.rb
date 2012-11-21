@@ -32,4 +32,29 @@ describe Project do
       subject.should_not be_valid
     end
   end
+
+  describe "transfer" do
+    let(:way) { FactoryGirl.create(:way_with_nodes) }
+    let(:relation) { FactoryGirl.create(:relation_with_members) }
+    let(:project) { FactoryGirl.create(:project) }
+
+    it "should work for ways" do
+      way.should be_valid
+      project.ways.should be_empty
+      project.transfer
+
+      project.ways.should_not be_empty
+      project.ways.first.nodes.length.should eq(way.nodes.length)
+    end
+
+    it "should work for relations" do
+      relation.should be_valid
+      relation.relation_members.length.should_not be_zero
+      project.relations.should be_empty
+      project.transfer
+
+      project.relations.should_not be_empty
+      project.relations.first.relation_members.length.should_not be_zero
+    end
+  end
 end
