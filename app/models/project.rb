@@ -25,43 +25,40 @@ class Project < ActiveRecord::Base
     entities > 0 ? ((changes.to_f / entities) * 100).to_i : 0
   end
 
-  # This might take a while...
+  # This uses raw sql queries, which isn't very rails-y, but at least scales exteremly well.
+  # An alternative would be to investigate gems like https://github.com/zdennis/activerecord-import
   def transfer
-    Node.all.each do |node|
-      pn = self.nodes.new
-      pn.update_from(node)
-      pn.save!
-    end
+    self.connection.execute(
+      "INSERT INTO project_nodes
+        (project_id,osm_id,version,user_id,tstamp,changeset_id,tags,geom)
+        SELECT #{self.id},id,version,user_id,tstamp,changeset_id,tags,geom FROM nodes;")
 
-    Relation.all.each do |relation|
-      pr = self.relations.new
-      pr.update_from(relation)
-      pr.save!
-    end
+    self.connection.execute(
+      "INSERT INTO project_relations
+        (project_id,osm_id,version,user_id,tstamp,changeset_id,tags)
+        SELECT #{self.id},id,version,user_id,tstamp,changeset_id,tags FROM relations;")
 
-    RelationMember.all.each do |relation_member|
-      prm = self.relation_members.new
-      prm.update_from(relation_member)
-      prm.save!
-    end
+    self.connection.execute(
+      "INSERT INTO project_relation_members
+        (project_id,relation_id,member_id,member_type,member_role,sequence_id)
+        SELECT #{self.id},relation_id,member_id,member_type,member_role,sequence_id FROM relation_members;")
 
-    WayNode.all.each do |way_node|
-      pwn = self.way_nodes.new
-      pwn.update_from(way_node)
-      pwn.save!
-    end
+    self.connection.execute(
+      "INSERT INTO project_way_nodes
+        (project_id, way_id, node_id, sequence_id)
+        SELECT #{self.id},way_id, node_id, sequence_id FROM way_nodes;")
 
-    Way.all.each do |way|
-      pw = self.ways.new
-      pw.update_from(way)
-      pw.save!
-    end
+    self.connection.execute(
+      "INSERT INTO project_ways
+        (project_id, osm_id, version, user_id, tstamp,changeset_id, tags)
+        SELECT #{self.id}, id, version, user_id, tstamp, changeset_id, tags FROM ways;")
 
-    User.all.each do |user|
-      pu = self.users.new
-      pu.update_from(user)
-      pu.save!
-    end
+    self.connection.execute(
+      "INSERT INTO project_users
+        (project_id, osm_id, name)
+        SELECT #{self.id}, id, name FROM users;")
+
+    self.reload
   end
 
   def truncate_staging_tables
