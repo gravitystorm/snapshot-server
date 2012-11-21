@@ -23,7 +23,6 @@ class Relation < ActiveRecord::Base
   validates_presence_of :id, :on => :update
   validates_presence_of :tstamp,:version,  :changeset_id
   validates_uniqueness_of :id
-  validates_inclusion_of :visible, :in => [ true, false ]
   validates_numericality_of :id, :on => :update, :integer_only => true
   validates_numericality_of :changeset_id, :version, :integer_only => true
 
