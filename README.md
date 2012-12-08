@@ -16,7 +16,7 @@ First, grab the code
 git clone https://github.com/gravitystorm/snapshot-server.git
 ```
 
-Then install the gem dependencies. You'll need ruby and postgis installed, and development headers for postgres and imagemagick.
+Then install the gem dependencies. You'll need ruby and postgis installed, and development headers for postgres.
 
 ```
 cd snapshot-server
