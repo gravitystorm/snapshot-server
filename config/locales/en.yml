@@ -28,6 +28,8 @@ en:
       success: "Project created"
     edit:
       title: "Edit project details"
+    new:
+      title: "Create a new project"
     update:
       success: "Project updated"
     show:
