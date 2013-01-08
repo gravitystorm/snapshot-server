@@ -28,6 +28,9 @@ en:
       success: "Project created"
     edit:
       title: "Edit project details"
+    index:
+      no_projects: "There are no projects on this server yet."
+      title: "All Projects"
     new:
       title: "Create a new project"
     update:

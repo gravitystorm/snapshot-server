@@ -1,5 +1,9 @@
 .page-header
-  %h1= t ".all_projects"
+  %h1= t ".title"
+
+- if @projects.empty?
+  %p= t ".no_projects"
+- else
   - @projects.each do |p|
     = progress_bar(p.tagged_completion, link_to(p.title, p))
   .span4
