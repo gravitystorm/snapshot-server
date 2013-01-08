@@ -1,4 +1,5 @@
-%h2= t ".title", :project => @project.title
+.page-header
+  %h2= t ".title", :project => @project.title
 
 - if @nodes.empty?
   %p= t ".no_nodes"
