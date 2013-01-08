@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620135238) do
+ActiveRecord::Schema.define(:version => 20130108165457) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -57,7 +57,9 @@ ActiveRecord::Schema.define(:version => 20120620135238) do
     t.text     "status"
   end
 
+  add_index "project_nodes", ["geom"], :name => "index_project_nodes_on_geom", :spatial => true
   add_index "project_nodes", ["osm_id"], :name => "index_project_nodes_on_osm_id"
+  add_index "project_nodes", ["project_id", "osm_id"], :name => "index_project_nodes_on_project_id_and_osm_id", :unique => true
   add_index "project_nodes", ["project_id"], :name => "index_project_nodes_on_project_id"
 
   create_table "project_relation_members", :force => true do |t|
@@ -68,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20120620135238) do
     t.text    "member_role",              :null => false
     t.integer "sequence_id",              :null => false
   end
+
+  add_index "project_relation_members", ["project_id", "relation_id", "sequence_id"], :name => "index_project_relation_members_on_project_rel_seq_ids", :unique => true
 
   create_table "project_relations", :force => true do |t|
     t.integer  "project_id",                :null => false
@@ -81,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20120620135238) do
   end
 
   add_index "project_relations", ["osm_id"], :name => "index_project_relations_on_osm_id"
+  add_index "project_relations", ["project_id", "osm_id"], :name => "index_project_relations_on_project_id_and_osm_id", :unique => true
   add_index "project_relations", ["project_id"], :name => "index_project_relations_on_project_id"
 
   create_table "project_users", :force => true do |t|
@@ -97,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20120620135238) do
   end
 
   add_index "project_way_nodes", ["node_id"], :name => "index_project_way_nodes_on_node_id"
+  add_index "project_way_nodes", ["project_id", "way_id", "sequence_id"], :name => "index_project_way_nodes_on_project_way_seq_ids", :unique => true
   add_index "project_way_nodes", ["project_id"], :name => "index_project_way_nodes_on_project_id"
   add_index "project_way_nodes", ["way_id"], :name => "index_project_way_nodes_on_way_id"
 
@@ -112,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20120620135238) do
   end
 
   add_index "project_ways", ["osm_id"], :name => "index_project_ways_on_osm_id"
+  add_index "project_ways", ["project_id", "osm_id"], :name => "index_project_ways_on_project_id_and_osm_id", :unique => true
   add_index "project_ways", ["project_id"], :name => "index_project_ways_on_project_id"
 
   create_table "projects", :force => true do |t|
