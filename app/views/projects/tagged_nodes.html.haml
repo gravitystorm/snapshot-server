@@ -1,5 +1,7 @@
 %h2= t ".title", :project => @project.title
 
-= render "nodes", :entities => @nodes
-
-= will_paginate @nodes
+- if @nodes.empty?
+  %p= t ".no_nodes"
+- else
+  = render "nodes", :entities => @nodes
+  = will_paginate @nodes

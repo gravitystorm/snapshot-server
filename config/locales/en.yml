@@ -54,10 +54,13 @@ en:
       percentage_ways: "%{count}% of tagged ways have been assessed"
       view_map: "View a shonky map of the remaining features."
     tagged_nodes:
+      no_nodes: "There are no tagged nodes in this project."
       title: "Tagged nodes in %{project}"
     tagged_ways:
+      no_ways: "There are no tagged ways in this project."
       title: "Tagged ways in %{project}"
     tagged_relations:
+      no_relations: "There are no tagged relations in this project."
       title: "Tagged relations in %{project}"
   relations:
     show:
