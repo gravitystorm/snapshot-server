@@ -53,6 +53,12 @@ en:
       percentage_relations: "%{count}% of tagged relations have been assessed"
       percentage_ways: "%{count}% of tagged ways have been assessed"
       view_map: "View a shonky map of the remaining features."
+    tagged_nodes:
+      title: "Tagged nodes in %{project}"
+    tagged_ways:
+      title: "Tagged ways in %{project}"
+    tagged_relations:
+      title: "Tagged relations in %{project}"
   relations:
     show:
       title: "Details for relation %{id}"
