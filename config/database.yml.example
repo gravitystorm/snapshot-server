@@ -5,6 +5,7 @@ development:
   database: snapshot-dev
   host: /var/run/postgresql/
   encoding: utf8
+  script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5/
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,9 +15,11 @@ test:
   database: snapshot-test
   host: /var/run/postgresql/
   encoding: utf8
+  script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5/
 
 production:
   adapter: postgis
   database: snapshot-prod
   host: /var/run/postgresql/
   encoding: utf8
+  script_dir: /usr/share/postgresql/9.1/contrib/postgis-1.5/
