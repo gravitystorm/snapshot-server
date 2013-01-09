@@ -49,6 +49,27 @@ class OsmReader
             @current_entity.save!
             @current_entity = nil
           end
+        when "way"
+          raise unless @current_entity.nil?
+          osm_id = @parser["id"]
+          version = @parser["version"]
+          tstamp = @parser["timestamp"]
+          user_id = @parser["uid"]
+          user_name = @parser["user"]
+          changeset_id = @parser["changeset"]
+          create_user(user_id, user_name) unless user_ids.include?(user_id)
+
+          @current_entity = ProjectWay.new(project_id: @project.id, osm_id: osm_id, version: version, user_id: user_id,
+                                           tstamp: tstamp, changeset_id: changeset_id)
+          if @parser.empty_element?
+            raise
+          end
+        when "nd"
+          raise unless @current_entity.is_a?(ProjectWay)
+          sequence_id = @current_entity.way_nodes.length + 1 # start from 1
+          node_osm_id = @parser["ref"]
+          wn = ProjectWayNode.create!(project_id: @project.id, way_id: @current_entity.osm_id, node_id: node_osm_id, sequence_id: sequence_id)
+          @current_entity.way_nodes << wn
         when "tag"
           key = @parser["k"]
           value = @parser["v"]
