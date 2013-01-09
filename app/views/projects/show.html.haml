@@ -48,5 +48,12 @@
       %h4 Potlatch2 Vector Backgrounds
     %p To use this layer in Potlatch 2's vectors.xml, here is the correct layer definition snippet
     = render "set_snippet", :project => @project, :crossdomain_url => @crossdomain_url
+- elsif permitted_to?(:upload)
+  .section
+    %h2= t ".upload_data"
+    %p= t ".high_performance_guidance"
+    %h3= t ".experimental_upload"
+    %p= t ".small_files_guidance"
+    = render "upload_form"
 - else
-  = render "upload_form"
+  %p= t ".no_data_yet"
