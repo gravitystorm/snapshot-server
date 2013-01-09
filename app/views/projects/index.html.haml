@@ -6,6 +6,6 @@
 - else
   - @projects.each do |p|
     = progress_bar(p.tagged_completion, link_to(p.title, p))
-  .span4
-    .tasks
-      = link_to t(".create_new_project"), new_project_path
+.span4
+  .tasks
+    = link_to t(".create_new_project"), new_project_path
