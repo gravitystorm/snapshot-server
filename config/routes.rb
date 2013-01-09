@@ -9,6 +9,7 @@ SnapshotServer::Application.routes.draw do
     get 'tagged_relations', :on => :member
     get 'map', :on => :member
     get 'unprocessed', :on => :member
+    post 'upload', :on => :member
     resources :nodes
     resources :ways
     resources :relations

@@ -1,7 +1,7 @@
 authorization do
   role :admin do
     includes :guest
-    has_permission_on :projects, :to => :manage
+    has_permission_on :projects, :to => [:manage, :upload]
   end
 
   role :guest do
