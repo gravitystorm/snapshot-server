@@ -56,5 +56,10 @@ describe Project do
       project.relations.should_not be_empty
       project.relations.first.relation_members.length.should_not be_zero
     end
+
+    it "should mark the project as loaded" do
+      project.transfer
+      project.should be_loaded
+    end
   end
 end

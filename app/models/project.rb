@@ -58,6 +58,7 @@ class Project < ActiveRecord::Base
         (project_id, osm_id, name)
         SELECT #{self.id}, id, name FROM users;")
 
+    self.update_attribute(:loaded, true)
     self.reload
   end
 
