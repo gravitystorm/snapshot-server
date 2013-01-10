@@ -34,6 +34,7 @@ class ProjectNode < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :tstamp, :presence => true
   validates :changeset_id, :presence => true
+  validates :geom, :presence => true
 
   def self.default_status
     NODE_STATUS_DEFAULT

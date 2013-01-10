@@ -48,6 +48,24 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def upload
+    osm_reader = OsmReader.new(params[:project][:file], @project)
+
+    begin
+      Project.transaction do
+        result = osm_reader.commit
+      end
+
+      @project.loaded = true
+      @project.save!
+      set_flash_message(:success)
+    rescue Exception => e
+      flash[:alert] = e.message
+    end
+
+    redirect_to @project
+  end
+
   def tagged_nodes
     @nodes = @project.nodes.with_tags.ordered.page(params[:page])
   end

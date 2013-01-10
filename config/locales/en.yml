@@ -39,7 +39,10 @@ en:
       edit: "Edit project details"
       title: "Project '%{name}'"
       currently_loaded: "In this project, the following data is currently loaded:"
+      experimental_upload: "Experimental Upload"
+      high_performance_guidance: "For most files you are best of using the high-performance route involving osmosis. Please see the documentation."
       looking_at_status: "Looking at the status of tagged objects, we can see the following:"
+      no_data_yet: "There is no data loaded into this project."
       number_of_nodes:
         zero: "There are no nodes"
         one: "There is only one node"
@@ -57,6 +60,8 @@ en:
       percentage_nodes: "%{count}% of tagged nodes have been assessed"
       percentage_relations: "%{count}% of tagged relations have been assessed"
       percentage_ways: "%{count}% of tagged ways have been assessed"
+      small_files_guidance: "For small files (around 1Mb or less) you can try using this upload form:"
+      upload_data: "Upload Data"
       view_map: "View a shonky map of the remaining features."
     tagged_nodes:
       no_nodes: "There are no tagged nodes in this project."

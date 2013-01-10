@@ -4,46 +4,56 @@
 .tasks
   = link_to (t ".edit"), edit_project_path(@project)
 
-.section
-  .page-header
-    %h3
-      Statistics
-      %small and more lies
-  %p= t ".currently_loaded"
-  %ul
-    %li= t ".number_of_nodes", :count => @node_count
-    %li= t ".number_of_ways", :count => @way_count
-    %li= t ".number_of_relations", :count => @rel_count
+- if @project.loaded
+  .section
+    .page-header
+      %h3
+        Statistics
+        %small and more lies
+    %p= t ".currently_loaded"
+    %ul
+      %li= t ".number_of_nodes", :count => @node_count
+      %li= t ".number_of_ways", :count => @way_count
+      %li= t ".number_of_relations", :count => @rel_count
 
-  %p= t ".only_tagged"
-  %ul
-    %li= link_to (t ".number_of_nodes", :count => @tagged_node_count), tagged_nodes_project_path(@project)
-    %li= link_to (t ".number_of_ways", :count => @tagged_way_count), tagged_ways_project_path(@project)
-    %li= link_to (t ".number_of_relations", :count => @tagged_rel_count), tagged_relations_project_path(@project)
+    %p= t ".only_tagged"
+    %ul
+      %li= link_to (t ".number_of_nodes", :count => @tagged_node_count), tagged_nodes_project_path(@project)
+      %li= link_to (t ".number_of_ways", :count => @tagged_way_count), tagged_ways_project_path(@project)
+      %li= link_to (t ".number_of_relations", :count => @tagged_rel_count), tagged_relations_project_path(@project)
 
-  %p= t ".looking_at_status"
-  - if @tagged_node_count > 0
-    = progress_bar(@percentage_nodes, t(".percentage_nodes", :count => @percentage_nodes))
+    %p= t ".looking_at_status"
+    - if @tagged_node_count > 0
+      = progress_bar(@percentage_nodes, t(".percentage_nodes", :count => @percentage_nodes))
 
-  - if @tagged_way_count > 0
-    = progress_bar(@percentage_ways, t(".percentage_ways", :count => @percentage_ways))
+    - if @tagged_way_count > 0
+      = progress_bar(@percentage_ways, t(".percentage_ways", :count => @percentage_ways))
 
-  - if @tagged_rel_count > 0
-    = progress_bar(@percentage_rels, t(".percentage_relations", :count => @percentage_rels))
+    - if @tagged_rel_count > 0
+      = progress_bar(@percentage_rels, t(".percentage_relations", :count => @percentage_rels))
 
-  = progress_bar(@project.tagged_completion, t(".percentage_overall", :count => @project.tagged_completion))
+    = progress_bar(@project.tagged_completion, t(".percentage_overall", :count => @project.tagged_completion))
 
-  %p= link_to t(".view_map"), map_project_path
-.section
-  .page-header
-    %h3
-      Configuration
-      %small nitty gritty details
-  %p This project's api endpoint is
-  %pre= @api_endpoint_url
-  %p So, for example, you can make a map call to
-  %pre= url_for(:controller => "api/maps", :action => :show, :project_id => @project.id, :only_path => false) + '?bbox=min_lon,min_lat,max_lon,max_lat'
-  .page-header
-    %h4 Potlatch2 Vector Backgrounds
-  %p To use this layer in Potlatch 2's vectors.xml, here is the correct layer definition snippet
-  = render "set_snippet", :project => @project, :crossdomain_url => @crossdomain_url
+    %p= link_to t(".view_map"), map_project_path
+  .section
+    .page-header
+      %h3
+        Configuration
+        %small nitty gritty details
+    %p This project's api endpoint is
+    %pre= @api_endpoint_url
+    %p So, for example, you can make a map call to
+    %pre= url_for(:controller => "api/maps", :action => :show, :project_id => @project.id, :only_path => false) + '?bbox=min_lon,min_lat,max_lon,max_lat'
+    .page-header
+      %h4 Potlatch2 Vector Backgrounds
+    %p To use this layer in Potlatch 2's vectors.xml, here is the correct layer definition snippet
+    = render "set_snippet", :project => @project, :crossdomain_url => @crossdomain_url
+- elsif permitted_to?(:upload)
+  .section
+    %h2= t ".upload_data"
+    %p= t ".high_performance_guidance"
+    %h3= t ".experimental_upload"
+    %p= t ".small_files_guidance"
+    = render "upload_form"
+- else
+  %p= t ".no_data_yet"
